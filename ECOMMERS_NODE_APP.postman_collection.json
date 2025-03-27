@@ -1,0 +1,72 @@
+{
+	"info": {
+		"_postman_id": "37b90a5e-e5ea-442d-84d9-c57923dfcca0",
+		"name": "ECOMMERS_NODE_APP",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21987569"
+	},
+	"item": [
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "for_admins",
+					"item": []
+				},
+				{
+					"name": "get_products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/product",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"code\": \"PRD001\",\r\n  \"name\": \"Laptop Gamer\",\r\n  \"price\": 1500.99,\r\n  \"family\": \"Tecnología\",\r\n  \"category\": \"Computadoras\",\r\n  \"subcategory\": \"Laptops\",\r\n  \"brand\": \"ASUS\",\r\n  \"model\": \"ROG Zephyrus G14\",\r\n  \"description\": \"Laptop gamer con procesador AMD Ryzen y GPU RTX 4060\",\r\n  \"image\": \"https://example.com/laptop.jpg\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/product",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"product"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Products",
+			"item": []
+		}
+	]
+}
