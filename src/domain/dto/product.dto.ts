@@ -1,47 +1,42 @@
-
 export class ProductDto {
-  id?: string;
-  code: string;
+  id_product: string;
   name: string;
-  price: number;
-  family: string;
-  category: string;
-  subcategory: string;
-  brand: string;
   model: string;
-  description: string;
-  image: string;
-  created_at?: Date;
-  updated_at?: Date;
+  brand: string;
+  colors?: string;
+  liters?: string;
+  km?: string;
+  engine?: string;
+  description?: string;
+  weight?: string;
+  tires?: string;
+  purchase_price: number;
+  sale_price?: number;
+  id_user: string;
+  status?: boolean;
 
   constructor(props: { [key: string]: any }) {
-    this.id = props.id;
-    this.code = props.code;
+    this.id_product = props.id_product;
     this.name = props.name;
-    this.price = props.price;
-    this.family = props.family;
-    this.category = props.category;
-    this.subcategory = props.subcategory;
-    this.brand = props.brand;
     this.model = props.model;
+    this.brand = props.brand;
+    this.colors = props.colors;
+    this.liters = props.liters;
+    this.km = props.km;
+    this.engine = props.engine;
     this.description = props.description;
-    this.image = props.image;
-    // this.created_at = props.created_at;
-    // this.updated_at = props.updated_at;
+    this.weight = props.weight;
+    this.tires = props.tires;
+    this.purchase_price = props.purchase_price;
+    this.sale_price = props.sale_price;
+    this.id_user = props.id_user;
+    this.status = props.status;
   }
 
   static create(props: {
     [key: string]: any;
   }): [boolean, string, ProductDto | null] {
-    const requiredFields = [
-      "code",
-      "name",
-      "price",
-      "category",
-      "subcategory",
-      "brand",
-      "description",
-    ];
+    const requiredFields = ["name", "model", "brand"];
 
     for (const field of requiredFields) {
       if (!props[field]) {
@@ -50,18 +45,20 @@ export class ProductDto {
     }
 
     const validatedProps = {
-      code: String(props.code).trim(),
       name: String(props.name),
-      price: Number(props.price),
-      family: String(props.family),
-      category: String(props.category),
-      subcategory: String(props.subcategory),
-      brand: String(props.brand),
       model: String(props.model),
+      brand: String(props.brand),
+      colors: String(props.colors),
+      liters: String(props.liters),
+      km: String(props.km),
+      engine: String(props.engine),
       description: String(props.description),
-      image: String(props.image),
-    //   created_at: new Date(),
-    //   updated_at: new Date(),
+      weight: String(props.weight),
+      tires: String(props.tires),
+      purchase_price: Number(props.purchase_price),
+      sale_price: Number(props.sale_price),
+      id_user: String(props.id_user),
+      status: Boolean(props.status),
     };
     return [true, "No hay errores", new ProductDto(validatedProps)];
   }

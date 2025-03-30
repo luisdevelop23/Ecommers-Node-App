@@ -1,50 +1,70 @@
 import { ProductDataSource } from "../../domain/datasource/product.datasource";
 import { ProductDto } from "../../domain/dto/product.dto";
 import { ProductEntity } from "../../domain/entity/product.entity";
+import { generateCode } from "../../helpers/generate_code";
 import { TypeOrmCustomize } from "../../plugins/type-orm/type-orm";
 
 export class ProductDataSourceImpl implements ProductDataSource {
   private RP = TypeOrmCustomize.getRepository(ProductEntity);
   getProducts(): Promise<ProductEntity[]> {
     return this.RP.find({
-        where: { state: true },
+      where: { status: true },
     });
   }
-  async getProduct(id: string): Promise<ProductEntity> {
-    const product = await this.RP.findOneBy({ id });
+
+  async getProduct(cod_product: string): Promise<ProductEntity> {
+    const product = await this.RP.findOne({
+      where: { cod_product, status: true },
+    });
+
     if (!product) {
       throw new Error("Producto no encontrado");
     }
+
     return product;
   }
+
   async createProduct(product: ProductDto): Promise<ProductEntity> {
-    const newProduct = await this.RP.create(product);
-    if (!newProduct) {
-      throw new Error("Producto no creado");
-    }
+    console.log("productooooooo",product)
+    const newProduct = this.RP.create({
+      ...product,
+      cod_product: await generateCode(this.RP, "P", "cod_product"),
+    });
+
     return this.RP.save(newProduct);
   }
-  async updateProduct(product: ProductDto): Promise<ProductEntity> {
+
+  async updateProduct(
+    cod_product: string,
+    product: ProductDto
+  ): Promise<ProductEntity> {
     const existingProduct = await this.RP.findOne({
-      where: { id: product.id },
+      where: { cod_product, status: true },
     });
 
     if (!existingProduct) {
       throw new Error("Producto no encontrado");
     }
 
-    Object.assign(existingProduct, product);
+    Object.assign(existingProduct, {
+      ...product,
+      id_product: existingProduct.id_product,
+      model: existingProduct.model,
+      created_date: existingProduct.created_date,
+      updated_at: new Date(),
+    });
 
     return this.RP.save(existingProduct);
   }
-  async deleteProduct(id: string): Promise<ProductEntity> {
-    const product = await this.RP.findOne({ where: { id } });
+
+  async deleteProduct(cod_product: string): Promise<ProductEntity> {
+    const product = await this.RP.findOne({ where: { cod_product } });
 
     if (!product) {
       throw new Error("Producto no encontrado");
     }
 
-    product.state = false;
+    product.status = false;
 
     return this.RP.save(product);
   }

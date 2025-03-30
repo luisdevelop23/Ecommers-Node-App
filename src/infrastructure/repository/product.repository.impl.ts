@@ -8,16 +8,16 @@ export class ProductRepositoryImpl implements ProductRepository {
   async getProducts(): Promise<ProductEntity[]> {
     return await this.datasource.getProducts();
   }
-  async getProduct(id: string): Promise<ProductEntity> {
-    return await this.datasource.getProduct(id);
+  async getProduct(cod_product: string): Promise<ProductEntity> {
+    return await this.datasource.getProduct(cod_product);
   }
   async createProduct(product: ProductDto): Promise<ProductEntity> {
     return await this.datasource.createProduct(product);
   }
-  async updateProduct(product: ProductDto): Promise<ProductEntity> {
-    return await this.datasource.updateProduct(product);
+  async updateProduct(cod_product: string, product: ProductDto): Promise<ProductEntity> {
+    return await this.datasource.updateProduct(cod_product, product);
   }
-  async deleteProduct(id: string): Promise<ProductEntity> {
-    return await this.datasource.deleteProduct(id);
+  async deleteProduct(cod_product: string): Promise<ProductEntity> {
+    return await this.datasource.deleteProduct(cod_product);
   }
 }

@@ -11,16 +11,19 @@ export async function generateCode(
     return `${prefix}001`;
   }
 
-  const lastItem = await repo.findOne({
+  const lastItem = await repo.find({
     order: { [column]: "DESC" },
     select: [column],
+    take: 1,
   });
 
-  if (!lastItem || !lastItem[column]) {
-    return `${prefix}001`; 
+  const lastCode = lastItem[0]?.[column];
+
+  if (!lastItem.length || !lastItem[0][column]) {
+    return `${prefix}001`;
   }
 
-  const lastCodeNumber = parseInt(lastItem[column].substring(1), 10) + 1;
+  const lastCodeNumber = parseInt(lastItem[0][column].substring(prefix.length), 10) + 1;
 
   return `${prefix}${String(lastCodeNumber).padStart(3, "0")}`;
 }

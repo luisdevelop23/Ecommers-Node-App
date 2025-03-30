@@ -1,16 +1,22 @@
+import { UserIF } from "./user.interface";
+
 export interface ProductIF {
-  id: string;
-  code: string;
+  id_product: string;
+  cod_product: string;
   name: string;
-  price: number;
-  family: string;
-  category: string;
-  subcategory: string;
-  brand: string;
   model: string;
-  description: string;
-  image: string;
-  created_at: Date;
-  updated_at: Date;
-  state?: boolean;
+  brand: string;
+  colors?: string;
+  liters?: string;
+  km?: string;
+  engine?: string;
+  description?: string;
+  weight?: string;
+  tires?: string;
+  purchase_price: number;
+  sale_price?: number;
+  created_date: Date;
+  updated_date: Date;
+  user: UserIF;
+  status?: boolean;
 }
