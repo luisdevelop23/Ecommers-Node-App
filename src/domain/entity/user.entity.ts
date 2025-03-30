@@ -12,6 +12,7 @@ import { UserIF } from "../interface/user.interface";
 import { ProductEntity } from "./product.entity";
 import { PublicationEntity } from "./publication.entity";
 import { PublicationPhotoEntity } from "./publication_photo.entity";
+import { CustomerEntity } from "./customer.entity";
 
 @Entity("user")
 export class UserEntity implements UserIF {
@@ -47,15 +48,6 @@ export class UserEntity implements UserIF {
 
   @UpdateDateColumn({ name: "updated_at", nullable: false })
   updated_at: Date;
-
-  @OneToMany(() => ProductEntity, (product) => product.user)
-  product: ProductEntity[];
-
-  @OneToMany(() => PublicationEntity, (publication) => publication.user)
-  publication: PublicationEntity[];
-
-  @OneToMany(() => PublicationPhotoEntity, (publication_photo) => publication_photo.publication)
-  publication_photo: PublicationPhotoEntity[]
 
 
   constructor(params: UserIF) {

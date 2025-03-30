@@ -1,6 +1,8 @@
+import { customersIF } from "./customer.interface";
+import { UserIF } from "./user.interface";
+
 export interface SaleIF {
   id_sale: string;
-  id_customer: string;
   sale_date: Date;
   total: number;
   quotas: number;
@@ -9,5 +11,7 @@ export interface SaleIF {
   sale_status: string;
   created_at: Date;
   updated_at?: Date;
-  id_user: string;
+  status?: boolean;
+  customer: customersIF;
+  user: UserIF;
 }

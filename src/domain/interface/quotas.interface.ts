@@ -1,11 +1,17 @@
+import { ProductIF } from "./product.interface";
+import { SaleIF } from "./sale.interface";
+import { UserIF } from "./user.interface";
+
 export interface QuotasIF {
   id_quotas: string;
-  id_sale: string;
-  id_product: string;
-  quantity: number;
+  number_quota: number;
   price: number;
+  type_payment: string;
+  date_paid: Date;
+  receipt_number: string;
   created_date: Date;
   updated_date: Date;
   status?: boolean;
-  id_user: string;
+  sale: SaleIF;
+  user: UserIF;
 }

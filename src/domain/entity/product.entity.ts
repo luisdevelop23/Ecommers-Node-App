@@ -67,7 +67,7 @@ export class ProductEntity implements ProductIF {
   @Column({ name: "status", default: true })
   status?: boolean;
 
-  @ManyToOne(() => UserEntity,  (user: UserEntity) => user.id_user)
+  @ManyToOne(() => UserEntity)
   @JoinColumn({ name: "id_user" })
   user: UserEntity;
 

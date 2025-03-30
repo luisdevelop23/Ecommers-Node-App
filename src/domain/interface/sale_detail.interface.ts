@@ -1,7 +1,10 @@
+import { ProductIF } from "./product.interface";
+import { SaleIF } from "./sale.interface";
+import { UserIF } from "./user.interface";
+
 export class SaleDetailIF {
   id_sale_detail: string;
-  id_sale: string;
-  id_product: string;
+
   quantity: number;
   price: number;
   discount: number;
@@ -10,5 +13,6 @@ export class SaleDetailIF {
   created_date: Date;
   updated_date: Date;
   status?: boolean;
-  id_user: string;
+  sale: SaleIF;
+  product: ProductIF;
 }

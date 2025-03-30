@@ -1,3 +1,5 @@
+import { UserIF } from "./user.interface";
+
 export interface customersIF {
   id_customer: string;
   type_customer: string;
@@ -13,6 +15,6 @@ export interface customersIF {
   state?: boolean;
   created_at: Date;
   updated_at?: Date;
-  id_user?: string;
+  user: UserIF;
   status?: boolean;
 }

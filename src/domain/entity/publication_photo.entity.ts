@@ -28,7 +28,7 @@ export class PublicationPhotoEntity implements PublicationPhotoIF{
     @JoinColumn({name: "id_publication"})
     publication: PublicationEntity
 
-    @ManyToOne(() => UserEntity, (user) => user.publication_photo)
+    @ManyToOne(() => UserEntity)
     @JoinColumn({ name: "id_user" })
     user: UserEntity
 

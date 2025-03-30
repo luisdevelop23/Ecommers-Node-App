@@ -51,7 +51,7 @@ export class PublicationEntity implements PublicationIF {
   state?: boolean;
 
 
-  @ManyToOne(() => UserEntity, (user) => user.publication)
+  @ManyToOne(() => UserEntity)
   @JoinColumn({ name: "id_user" })
   user: UserEntity;
 
