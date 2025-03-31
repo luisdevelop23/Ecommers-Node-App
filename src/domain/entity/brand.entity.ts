@@ -38,7 +38,7 @@ export class BrandEntity implements BrandIF {
     if (!params) return;
     this.id_brand = params.id_brand;
     this.name = params.name;
-    this.id_user = params.id_user;
+    this.id_user = params.user.id_user;
     this.url_image = params.url_image;
   }
 }
