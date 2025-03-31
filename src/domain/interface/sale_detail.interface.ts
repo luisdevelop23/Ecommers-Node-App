@@ -4,7 +4,6 @@ import { UserIF } from "./user.interface";
 
 export class SaleDetailIF {
   id_sale_detail: string;
-
   quantity: number;
   price: number;
   discount: number;

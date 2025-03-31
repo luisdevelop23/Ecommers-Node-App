@@ -78,12 +78,6 @@ export class ProductEntity implements ProductIF {
   @JoinColumn({ name: "id_product" })
   publication: PublicationEntity[];
 
-  @OneToOne(() => InventoryEntity, (inventory) => inventory.product)
-  @JoinColumn({ name: "id_product" })
-  inventory: InventoryEntity;
-  
-
-
   constructor(params: ProductIF) {
     if (!params) return;
     this.id_product = params.id_product;

@@ -6,6 +6,6 @@ export interface InventoryIF {
   product: ProductIF;
   quantity: number;
   created_date: Date;
-  updated_date: Date;
+  updated_date?: Date;
   status?: boolean;
 }

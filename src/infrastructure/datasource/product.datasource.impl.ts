@@ -14,7 +14,10 @@ export class ProductDataSourceImpl implements ProductDataSource {
 
   async getProduct(cod_product: string): Promise<ProductEntity> {
     const product = await this.RP.findOne({
-      where: { cod_product, status: true },
+      where: {
+        cod_product,
+        // status: true,
+      },
     });
 
     if (!product) {
@@ -25,7 +28,7 @@ export class ProductDataSourceImpl implements ProductDataSource {
   }
 
   async createProduct(product: ProductDto): Promise<ProductEntity> {
-    console.log("productooooooo",product)
+    console.log("productooooooo", product);
     const newProduct = this.RP.create({
       ...product,
       cod_product: await generateCode(this.RP, "P", "cod_product"),

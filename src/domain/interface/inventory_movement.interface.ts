@@ -9,7 +9,7 @@ export interface InventoryMovementIF {
   reference: string;
   movement_date: Date;
   created_date: Date;
-  updated_date: Date;
+  updated_date?: Date;
   user: UserIF;
   status?: boolean;
   description?: string;

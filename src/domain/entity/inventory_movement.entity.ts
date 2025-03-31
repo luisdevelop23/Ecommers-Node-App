@@ -33,8 +33,8 @@ export class InventoryMovementEntity implements InventoryMovementIF {
   @CreateDateColumn({ name: "created_date" })
   created_date: Date;
 
-  @UpdateDateColumn({ name: "updated_date" })
-  updated_date: Date;
+  @UpdateDateColumn({ name: "updated_date", nullable: true })
+  updated_date?: Date;
 
   @Column({ name: "status", default: true })
   status?: boolean;

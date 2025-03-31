@@ -28,16 +28,19 @@ export class InventoryEntity implements InventoryIF {
   created_date: Date;
 
   @UpdateDateColumn({ name: "updated_date" })
-  updated_date: Date;
+  updated_date?: Date;
 
   @Column({ name: "status", default: true })
   status?: boolean;
 
   @OneToOne(() => ProductEntity)
+  @JoinColumn({ name: "id_inventory" }) 
   product: ProductEntity;
+
 
   @Column({ name: "id_product" })
   id_product: string;
+
 
   constructor(params: InventoryIF) {
     if(!params) return;

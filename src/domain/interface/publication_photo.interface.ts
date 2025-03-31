@@ -7,6 +7,6 @@ export interface PublicationPhotoIF {
   url_image: string;
   type: string;
   created_date: Date;
-  updated_date: Date;
+  updated_date?: Date;
   user: UserIF;
 }

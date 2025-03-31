@@ -28,7 +28,7 @@ export class RoleEntity implements RoleIF {
   updated_at: Date;
 
   @Column({ name: "status", default: true })
-  status: boolean;
+  status?: boolean;
 
 
 

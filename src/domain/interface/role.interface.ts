@@ -4,5 +4,5 @@ export interface RoleIF {
   fl_dashboard: boolean;
   created_at: Date;
   updated_at: Date;
-  status: boolean;
+  status?: boolean;
 }

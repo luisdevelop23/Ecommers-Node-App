@@ -1,5 +1,14 @@
-import { Column, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn } from "typeorm";
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryColumn,
+  UpdateDateColumn,
+} from "typeorm";
 import { BrandIF } from "../interface/brand.interface";
+import { UserEntity } from "./user.entity";
 
 @Entity({ name: "brand" })
 export class BrandEntity implements BrandIF {
@@ -9,9 +18,6 @@ export class BrandEntity implements BrandIF {
   @Column({ name: "name" })
   name: string;
 
-  @Column({ name: "id_user" })
-  id_user: string;
-
   @Column({ name: "url_image" })
   url_image: string;
 
@@ -19,7 +25,14 @@ export class BrandEntity implements BrandIF {
   created_date: Date;
 
   @UpdateDateColumn({ name: "updated_date" })
-  updated_date: Date;
+  updated_date?: Date;
+
+  @ManyToOne(() => UserEntity)
+  @JoinColumn({ name: "id_user" })
+  user: UserEntity;
+
+  @Column({ name: "id_user" })
+  id_user: string;
 
   constructor(params: BrandIF) {
     if (!params) return;

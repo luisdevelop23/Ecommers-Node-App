@@ -21,8 +21,8 @@ export class PublicationPhotoEntity implements PublicationPhotoIF{
     @CreateDateColumn({name: "created_date"})
     created_date: Date;
 
-    @UpdateDateColumn({name: "updated_date"})
-    updated_date: Date;
+    @UpdateDateColumn({name: "updated_date", nullable: true})
+    updated_date?: Date;
 
     @ManyToOne(()=> PublicationEntity, (publication) => publication.publication_photo)
     @JoinColumn({name: "id_publication"})
