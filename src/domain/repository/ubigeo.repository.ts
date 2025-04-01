@@ -1,6 +1,6 @@
 import { UbigeoEntity } from "../entity/ubigeo.entity";
 
 export abstract class UbigeoRepository {
-  abstract getUbigeo(): Promise<UbigeoEntity[]>;
+  abstract getUbigeo(prompt: string): Promise<UbigeoEntity[]>;
   abstract getUbigeoById(id: string): Promise<UbigeoEntity>;
 }

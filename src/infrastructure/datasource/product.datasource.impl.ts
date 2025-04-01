@@ -6,8 +6,8 @@ import { TypeOrmCustomize } from "../../plugins/type-orm/type-orm";
 
 export class ProductDataSourceImpl implements ProductDataSource {
   private RP = TypeOrmCustomize.getRepository(ProductEntity);
-  getProducts(): Promise<ProductEntity[]> {
-    return this.RP.find({
+  async getProducts(): Promise<ProductEntity[]> {
+    return await this.RP.find({
       where: { status: true },
       order: { created_date: "DESC" },
     });
