@@ -1,5 +1,4 @@
 import { ProductIF } from "./product.interface";
-import { UserIF } from "./user.interface";
 
 export interface InventoryIF {
   id_inventory: string;

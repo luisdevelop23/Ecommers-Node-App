@@ -11,7 +11,88 @@
 			"item": [
 				{
 					"name": "for_admins",
-					"item": []
+					"item": [
+						{
+							"name": "create_product",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"Toyota Corolla 2020\",\r\n  \"model\": \"Corolla\",\r\n  \"brand\": \"Toyota\",\r\n  \"colors\": \"Rojo, Azul, Blanco\",\r\n  \"liters\": \"2.0\",\r\n  \"km\": \"5000\",\r\n  \"engine\": \"V4\",\r\n  \"description\": \"Sedán compacto con alta eficiencia de combustible.\",\r\n  \"weight\": \"1300kg\",\r\n  \"tires\": \"Michelin\",\r\n  \"purchase_price\": 18000,\r\n  \"sale_price\": 22000,\r\n  \"id_user\": \"d1212mjd12-d2112diopj12d\",\r\n  \"status\": true\r\n}\r\n\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/product",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"product"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update_product",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"Toyota Corolla 2021\",\r\n  \"model\": \"Corolla\",\r\n  \"brand\": \"Toyota\",\r\n  \"colors\": \"Negro, Gris, Blanco\",\r\n  \"liters\": \"3.0\",\r\n  \"km\": \"13000\",\r\n  \"engine\": \"V6 Turbo\",\r\n  \"description\": \"Sedán compacto con mejor rendimiento y más seguridad.\",\r\n  \"weight\": \"130kg\",\r\n  \"tires\": \"Bridgestone\",\r\n  \"purchase_price\": 8500,\r\n  \"sale_price\": 2500,\r\n  \"id_user\": \"d1212mjd12-d2112diopj12d\",\r\n  \"status\": true\r\n}\r\n\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/product/P001",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"product",
+										"P001"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete_product",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/product/P001",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"product",
+										"P001"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				},
 				{
 					"name": "get_products",
@@ -19,7 +100,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/product",
+							"raw": "http://localhost:3000/api/product/",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -27,28 +108,20 @@
 							"port": "3000",
 							"path": [
 								"api",
-								"product"
+								"product",
+								""
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "create_product",
+					"name": "get_one_product",
 					"request": {
-						"method": "POST",
+						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"code\": \"PRD001\",\r\n  \"name\": \"Laptop Gamer\",\r\n  \"price\": 1500.99,\r\n  \"family\": \"Tecnología\",\r\n  \"category\": \"Computadoras\",\r\n  \"subcategory\": \"Laptops\",\r\n  \"brand\": \"ASUS\",\r\n  \"model\": \"ROG Zephyrus G14\",\r\n  \"description\": \"Laptop gamer con procesador AMD Ryzen y GPU RTX 4060\",\r\n  \"image\": \"https://example.com/laptop.jpg\"\r\n}\r\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
-							"raw": "http://localhost:3000/api/product",
+							"raw": "http://localhost:3000/api/product/P001",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -56,17 +129,14 @@
 							"port": "3000",
 							"path": [
 								"api",
-								"product"
+								"product",
+								"P001"
 							]
 						}
 					},
 					"response": []
 				}
 			]
-		},
-		{
-			"name": "Products",
-			"item": []
 		}
 	]
 }

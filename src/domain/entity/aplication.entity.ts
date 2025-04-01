@@ -3,7 +3,7 @@ import { AplicationIF } from "../interface/application.interface";
 
 
 @Entity({ name: "aplication" })
-export class Aplication implements AplicationIF{
+export class AplicationEntity implements AplicationIF{
     @PrimaryGeneratedColumn("uuid")
     id_aplication: string;
 
