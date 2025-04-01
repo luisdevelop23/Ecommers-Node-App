@@ -9,6 +9,7 @@ export class ProductDataSourceImpl implements ProductDataSource {
   getProducts(): Promise<ProductEntity[]> {
     return this.RP.find({
       where: { status: true },
+      order: { created_date: "DESC" },
     });
   }
 
@@ -26,6 +27,7 @@ export class ProductDataSourceImpl implements ProductDataSource {
 
     return product;
   }
+
 
   async createProduct(product: ProductDto): Promise<ProductEntity> {
     console.log("productooooooo", product);

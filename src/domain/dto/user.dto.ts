@@ -10,6 +10,7 @@ export class UserDto {
   id_role?: string;
   created_at?: Date;
   updated_at?: Date;
+  status?: boolean;
 
   constructor(props: { [key: string]: any }) {
     this.id = props.id;
@@ -21,10 +22,11 @@ export class UserDto {
     this.email = props.email;
     this.img_profile = props.img_profile;
     this.id_role = props.id_role;
+    this.status = props.status;
   }
 
   static create(props: { [key: string]: any }) {
-    const requiredFields = ["email", "password"];
+    const requiredFields = ["name", "surnames", "dni"];
     for (const field of requiredFields) {
       if (!props[field]) {
         return [false, `El campo ${field} es requerido`, null];
@@ -39,6 +41,7 @@ export class UserDto {
       email: String(props.email),
       img_profile: String(props.img_profile),
       id_role: String(props.id_role),
+      status: Boolean(props.status),
     };
     return [true, "", new UserDto(valitedProps)];
   }

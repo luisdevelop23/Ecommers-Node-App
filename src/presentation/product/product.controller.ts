@@ -3,7 +3,7 @@ import { ProductRepository } from "../../domain/repository/product.repository";
 import { ProductDto } from "../../domain/dto/product.dto";
 
 export class ProductController {
-  constructor(private readonly RP: ProductRepository) {}
+  constructor(private readonly RP: ProductRepository) { }
 
   public getProducts = async (
     req: Request,

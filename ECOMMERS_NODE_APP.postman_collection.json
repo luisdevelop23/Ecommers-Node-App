@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "37b90a5e-e5ea-442d-84d9-c57923dfcca0",
+		"_postman_id": "9373f675-ecc0-4848-934d-c53ce3ec0b8c",
 		"name": "ECOMMERS_NODE_APP",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "21987569"
@@ -131,6 +131,132 @@
 								"api",
 								"product",
 								"P001"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "get_users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/user/d1212mjd12-d2112diopj12d",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"user",
+								"d1212mjd12-d2112diopj12d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"asus\",\r\n    \"surnames\": \"asus\",\r\n    \"dni\": \"98646727\",\r\n    \"user_name\":  null,\r\n    \"password\": null,\r\n    \"email\": null,\r\n    \"img_profile\": null,\r\n    \"id_role\": null,\r\n    \"updated_at\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update_user",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"asus-edit\",\r\n    \"surnames\": \"asus-edit\",\r\n    \"dni\": \"98646722\",\r\n    \"email\": \"luis.xd@gmail.com\",\r\n    \"img_profile\": \"daejlejadla.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/user/a560f80a-37c6-4dfc-8bcb-b149a5cf140a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"user",
+								"a560f80a-37c6-4dfc-8bcb-b149a5cf140a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete_user",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/user/a560f80a-37c6-4dfc-8bcb-b149a5cf140a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"user",
+								"a560f80a-37c6-4dfc-8bcb-b149a5cf140a"
 							]
 						}
 					},

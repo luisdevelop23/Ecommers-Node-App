@@ -21,27 +21,29 @@ export class UserEntity implements UserIF {
   @Column({ name: "dni" })
   dni: string;
 
-  @Column({ name: "user_name", nullable: true })
+  @Column({ name: "user_name", nullable: true, default: null })
   user_name?: string;
 
-  @Column({ name: "password", nullable: true })
+  @Column({ name: "password", nullable: true, default: null })
   password?: string;
 
-  @Column({ name: "email", nullable: true })
+  @Column({ name: "email", nullable: true, default: null })
   email?: string;
 
-  @Column({ name: "img_profile", nullable: true })
+  @Column({ name: "img_profile", nullable: true, default: null })
   img_profile?: string;
 
-  @Column({ name: "id_role", nullable: true })
+  @Column({ name: "id_role", nullable: true, default: null })
   id_role?: string;
 
   @CreateDateColumn({ name: "created_at", nullable: false })
   created_at: Date;
 
-  @UpdateDateColumn({ name: "updated_at", nullable: true })
+  @UpdateDateColumn({ name: "updated_at", nullable: true, default: null })
   updated_at?: Date;
 
+  @Column({ name: "status", default: true })
+  status?: boolean;
   constructor(params: UserIF) {
     if (!params) return;
     this.name = params.name;
@@ -52,5 +54,6 @@ export class UserEntity implements UserIF {
     this.email = params.email;
     this.img_profile = params.img_profile;
     this.id_role = params.id_role;
+    this.status = params.status;
   }
 }

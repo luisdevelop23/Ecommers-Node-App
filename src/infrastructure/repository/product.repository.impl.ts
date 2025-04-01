@@ -4,7 +4,7 @@ import { ProductEntity } from "../../domain/entity/product.entity";
 import { ProductRepository } from "../../domain/repository/product.repository";
 
 export class ProductRepositoryImpl implements ProductRepository {
-  constructor(private readonly datasource: ProductDataSource) {}
+  constructor(private readonly datasource: ProductDataSource) { }
   async getProducts(): Promise<ProductEntity[]> {
     return await this.datasource.getProducts();
   }

@@ -10,4 +10,5 @@ export interface UserIF {
   id_role?: string;
   created_at: Date;
   updated_at?: Date;
+  status?: boolean;
 }
