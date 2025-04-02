@@ -56,4 +56,5 @@ export class SaleDto {
     };
     return [true, "", new SaleDto(valitedProps)];
   }
+
 }

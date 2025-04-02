@@ -15,13 +15,13 @@ export class UserController {
             const users = await this.RP.getUsers();
             if (users.length === 0) {
                 res.status(200).json({
-                    message: "No se encontraron productos",
+                    message: "No se encontraron Usuarios",
                     data: null,
                     result: false,
                 });
             }
             res.status(200).json({
-                message: "Productos obtenidos",
+                message: "Usuarios obtenidos",
                 data: users,
                 result: true,
             });
@@ -38,7 +38,7 @@ export class UserController {
         try {
             const user = await this.RP.getUser(req.params.id);
             res.status(200).json({
-                message: "Producto obtenido",
+                message: "Usuario obtenido",
                 data: user,
                 result: true,
             });
@@ -60,7 +60,7 @@ export class UserController {
             }
             const user = await this.RP.createUser(data as UserDto);
             res.status(200).json({
-                message: "Producto creado",
+                message: "Usuario creado",
                 data: user,
                 result: true,
             });
@@ -82,7 +82,7 @@ export class UserController {
             }
             const user = await this.RP.updateUser(req.params.id, data as UserDto);
             res.status(200).json({
-                message: "Producto actualizado",
+                message: "Usuario actualizado",
                 data: user,
                 result: true,
             });
@@ -99,7 +99,7 @@ export class UserController {
         try {
             const user = await this.RP.deleteUser(req.params.id);
             res.status(200).json({
-                message: "Producto eliminado",
+                message: "Usuario eliminado",
                 data: user,
                 result: true,
             });
