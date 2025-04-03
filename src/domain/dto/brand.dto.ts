@@ -22,6 +22,12 @@ export class BrandDto {
         return [false, `El campo ${field} es requerido`, null];
       }
     }
-    return new BrandDto(props);
+    const valitedProps = {
+      name: String(props.name),
+      url_image: String(props.url_image),
+      id_user: String(props.id_user),
+    }
+    return [true, "", new BrandDto(valitedProps)];
+
   }
 }

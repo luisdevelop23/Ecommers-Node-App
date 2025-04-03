@@ -10,7 +10,7 @@ export interface QuotasIF {
   date_paid: Date;
   receipt_number: string;
   created_date: Date;
-  updated_date: Date;
+  updated_date?: Date;
   status?: boolean;
   sale: SaleIF;
   user: UserIF;

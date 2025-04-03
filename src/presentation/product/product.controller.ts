@@ -54,6 +54,8 @@ export class ProductController {
   ): Promise<void> => {
     try {
       const [status, message, data] = ProductDto.create(req.body);
+      console.log("desde  el controller body", req.body)
+      console.log("desde  el controller data", data)
       if (!status) {
         res.status(400).json({ message, result: false });
         return;

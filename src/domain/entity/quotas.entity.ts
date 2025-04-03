@@ -35,7 +35,7 @@ export class QuotasEntity implements QuotasIF {
   created_date: Date;
 
   @UpdateDateColumn({ name: "updated_date" })
-  updated_date: Date;
+  updated_date?: Date;
 
   @Column({ name: "status", default: true })
   status?: boolean;

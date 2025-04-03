@@ -11,6 +11,7 @@ export class SaleRepositoryImpl implements SaleRepository {
     async getSale(id: string): Promise<SaleEntity> {
         return await this.datasource.getSale(id);
     }
+
     async createSale(sale: SaleDto): Promise<SaleEntity> {
         return await this.datasource.createSale(sale);
     }

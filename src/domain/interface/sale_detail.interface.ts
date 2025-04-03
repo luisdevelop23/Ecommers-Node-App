@@ -10,7 +10,7 @@ export class SaleDetailIF {
   sub_total: number;
   total: number;
   created_date: Date;
-  updated_date: Date;
+  updated_date?: Date;
   status?: boolean;
   sale: SaleIF;
   product: ProductIF;

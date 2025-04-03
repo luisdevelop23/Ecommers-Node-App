@@ -1,3 +1,5 @@
+import { UserIF } from "../interface/user.interface";
+
 export class ProductDto {
   id_product: string;
   name: string;
@@ -12,7 +14,7 @@ export class ProductDto {
   tires?: string;
   purchase_price: number;
   sale_price?: number;
-  id_user: string;
+  user: UserIF;
   status?: boolean;
 
   constructor(props: { [key: string]: any }) {
@@ -29,7 +31,7 @@ export class ProductDto {
     this.tires = props.tires;
     this.purchase_price = props.purchase_price;
     this.sale_price = props.sale_price;
-    this.id_user = props.id_user;
+    this.user = { id_user: props.user.id_user } as UserIF;
     this.status = props.status;
   }
 
@@ -57,7 +59,7 @@ export class ProductDto {
       tires: String(props.tires),
       purchase_price: Number(props.purchase_price),
       sale_price: Number(props.sale_price),
-      id_user: String(props.id_user),
+      user: { id_user: String(props.user.id_user) } as UserIF,
       status: Boolean(props.status),
     };
     return [true, "No hay errores", new ProductDto(validatedProps)];

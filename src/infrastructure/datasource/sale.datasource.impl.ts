@@ -18,11 +18,9 @@ export class SaleDataSourceImpl implements SaleDataSource {
         }
         return sale;
     }
-    async createSale(sale: SaleEntity): Promise<SaleEntity> {
-        const newSale = this.RP.create({
-            ...sale,
-            status: true
-        });
+    async createSale(sale: SaleDto): Promise<SaleEntity> {
+        console.log("sale desde datasource impl", sale);
+        const newSale = this.RP.create(sale);
         return this.RP.save(newSale);
     }
     async updateSale(id: string, sale: SaleDto): Promise<SaleEntity> {

@@ -1,3 +1,6 @@
+import { customersIF } from "../interface/customer.interface";
+import { UserIF } from "../interface/user.interface";
+
 export class SaleDto {
   id_sale: string;
   sale_date: Date;
@@ -9,8 +12,8 @@ export class SaleDto {
   created_at: Date;
   updated_at?: Date;
   status?: boolean;
-  id_customer: string;
-  id_user: string;
+  customer: customersIF;
+  user: UserIF;
 
   constructor(props: { [key: string]: any }) {
     this.id_sale = props.id_sale;
@@ -21,8 +24,8 @@ export class SaleDto {
     this.code_document = props.code_document;
     this.sale_status = props.sale_status;
     this.status = props.status;
-    this.id_customer = props.id_customer;
-    this.id_user = props.id_user;
+    this.customer = { id_customer: props.customer.id_customer, } as customersIF;
+    this.user = { id_user: props.user.id_user } as UserIF;
   }
 
   static create(props: { [key: string]: any }) {
@@ -33,8 +36,8 @@ export class SaleDto {
       "type_document",
       "code_document",
       "sale_status",
-      "id_customer",
-      "id_user",
+      "customer",
+      "user",
     ];
     for (const field of requiredFields) {
       if (!props[field]) {
@@ -51,8 +54,8 @@ export class SaleDto {
       type_document: String(props.type_document),
       code_document: String(props.code_document),
       sale_status: String(props.sale_status),
-      id_customer: String(props.id_customer),
-      id_user: String(props.id_user),
+      customer: { id_customer: String(props.customer.id_customer) } as customersIF,
+      user: { id_user: String(props.user.id_user) } as UserIF,
     };
     return [true, "", new SaleDto(valitedProps)];
   }

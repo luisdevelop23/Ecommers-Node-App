@@ -1,6 +1,9 @@
+import { ProductIF } from "../interface/product.interface";
+import { SaleIF } from "../interface/sale.interface";
+
 export class SaleDetailDto {
   id_sale_detail?: string;
-  quiantity: number;
+  quantity: number;
   price: number;
   discount: number;
   sub_total: number;
@@ -8,12 +11,12 @@ export class SaleDetailDto {
   created_date?: Date;
   updated_date?: Date;
   status?: boolean;
-  id_sale: string;
-  id_product: string;
+  sale: SaleIF;
+  product: ProductIF;
 
   constructor(props: { [key: string]: any }) {
     this.id_sale_detail = props.id_sale_detail;
-    this.quiantity = props.quiantity;
+    this.quantity = props.quantity;
     this.price = props.price;
     this.discount = props.discount;
     this.sub_total = props.sub_total;
@@ -21,19 +24,19 @@ export class SaleDetailDto {
     // this.created_date = props.created_date;
     // this.updated_date = props.updated_date;
     this.status = props.status;
-    this.id_sale = props.id_sale;
-    this.id_product = props.id_product;
+    this.sale = { id_sale: props.sale.id_sale } as SaleIF;
+    this.product = { id_product: props.product.id_product } as ProductIF;
   }
 
   static create(props: { [key: string]: any }) {
     const requiredFields = [
-      "quiantity",
+      "quantity",
       "price",
       "discount",
       "sub_total",
       "total",
-      "id_sale",
-      "id_product",
+      "sale",
+      "product",
     ];
     for (const field of requiredFields) {
       if (!props[field]) {
@@ -41,13 +44,13 @@ export class SaleDetailDto {
       }
     }
     const valitedProps = {
-      quiantity: Number(props.quiantity),
+      quantity: Number(props.quantity),
       price: Number(props.price),
       discount: Number(props.discount),
       sub_total: Number(props.sub_total),
       total: Number(props.total),
-      id_sale: String(props.id_sale),
-      id_product: String(props.id_product),
+      sale: { id_sale: String(props.sale.id_sale) } as SaleIF,
+      product: { id_product: String(props.product.id_product) } as ProductIF,
     };
     return [true, "", new SaleDetailDto(valitedProps)];
   }
