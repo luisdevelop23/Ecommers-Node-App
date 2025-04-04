@@ -12,8 +12,8 @@ export class SaleDto {
   created_at: Date;
   updated_at?: Date;
   status?: boolean;
-  customer: customersIF;
-  user: UserIF;
+  customer?: customersIF;
+  user?: UserIF;
 
   constructor(props: { [key: string]: any }) {
     this.id_sale = props.id_sale;
@@ -24,7 +24,7 @@ export class SaleDto {
     this.code_document = props.code_document;
     this.sale_status = props.sale_status;
     this.status = props.status;
-    this.customer = { id_customer: props.customer.id_customer, } as customersIF;
+    this.customer = { id_customer: props.customer.id_customer } as customersIF;
     this.user = { id_user: props.user.id_user } as UserIF;
   }
 
@@ -54,10 +54,30 @@ export class SaleDto {
       type_document: String(props.type_document),
       code_document: String(props.code_document),
       sale_status: String(props.sale_status),
-      customer: { id_customer: String(props.customer.id_customer) } as customersIF,
+      customer: {
+        id_customer: String(props.customer.id_customer),
+      } as customersIF,
       user: { id_user: String(props.user.id_user) } as UserIF,
     };
     return [true, "", new SaleDto(valitedProps)];
   }
 
+  static update(props: { [key: string]: any }) {
+    const valitedProps = {
+      sale_date:
+        props.sale_date && !isNaN(new Date(props.sale_date).getTime())
+          ? new Date(props.sale_date)
+          : null,
+      total: Number(props.total),
+      quotas: Number(props.quotas),
+      type_document: String(props.type_document),
+      code_document: String(props.code_document),
+      sale_status: String(props.sale_status),
+      customer: {
+        id_customer: String(props.customer.id_customer),
+      } as customersIF,
+      user: { id_user: String(props.user.id_user) } as UserIF,
+    };
+    return [true, "", new SaleDto(valitedProps)];
+  }
 }

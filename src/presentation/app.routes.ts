@@ -4,11 +4,15 @@ import { UserRoutes } from "./user/user.routes";
 import { UbigeoRoutes } from "./ubigeo/ubigeo.routes";
 import { SaleRoutes } from "./sale/sale.routes";
 import { SaleDetailRoutes } from "./sale_detail/sale_detail.routes";
+import { QuotasRoutes } from "./quotas/quotas.routes";
+import { RoleRoutes } from "./role/role.routes";
 
 export class AppRoutes {
   static get routes(): Router {
     const router = Router();
     router.use("/api/product", ProductRoutes.routes);
+    router.use("/api/quotas", QuotasRoutes.routes);
+    router.use("/api/role", RoleRoutes.routes);
     router.use("/api/saledetail", SaleDetailRoutes.routes);
     router.use("/api/sale", SaleRoutes.routes);
     router.use("/api/ubigeo", UbigeoRoutes.routes);

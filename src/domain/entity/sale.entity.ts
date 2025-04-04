@@ -49,14 +49,14 @@ export class SaleEntity implements SaleIF {
   customer: CustomerEntity;
 
   @Column({ name: "id_customer" })
-  id_customer: string;
+  id_customer?: string;
 
   @ManyToOne(() => UserEntity)
   @JoinColumn({ name: "id_user" })
   user: UserEntity;
 
   @Column({ name: "id_user" })
-  id_user: string;
+  id_user?: string;
 
   constructor(params: SaleIF) {
     if (!params) return;

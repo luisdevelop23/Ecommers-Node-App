@@ -1,3 +1,6 @@
+import { SaleIF } from "../interface/sale.interface";
+import { UserIF } from "../interface/user.interface";
+
 export class QuotasDto {
   id_quotas: string;
   number_quota: number;
@@ -8,8 +11,8 @@ export class QuotasDto {
   created_date: Date;
   updated_date: Date;
   status?: boolean;
-  id_sale: string;
-  id_user: string;
+  sale?: SaleIF;
+  user?: UserIF;
 
   constructor(props: { [key: string]: any }) {
     this.id_quotas = props.id_quotas;
@@ -21,8 +24,8 @@ export class QuotasDto {
     // this.created_date = props.created_date;
     // this.updated_date = props.updated_date;
     this.status = props.status;
-    this.id_sale = props.id_sale;
-    this.id_user = props.id_user;
+    this.sale = { id_sale: props.sale.id_sale } as SaleIF;
+    this.user = { id_user: props.user.id_user } as UserIF;
   }
 
   static create(props: { [key: string]: any }) {
@@ -32,8 +35,8 @@ export class QuotasDto {
       "type_payment",
       "date_paid",
       "receipt_number",
-      "id_sale",
-      "id_user",
+      "sale",
+      "user",
     ];
     for (const field of requiredFields) {
       if (!props[field]) {
@@ -46,8 +49,28 @@ export class QuotasDto {
       type_payment: String(props.type_payment),
       date_paid: new Date(props.date_paid),
       receipt_number: String(props.receipt_number),
-      id_sale: String(props.id_sale),
-      id_user: String(props.id_user),
+      sale: { id_sale: String(props.sale.id_sale) } as SaleIF,
+      user: { id_user: String(props.user.id_user) } as UserIF,
+    };
+    return [true, "", new QuotasDto(valitedProps)];
+  }
+  static update(props: { [key: string]: any }) {
+    const requiredFields = [
+      "type_payment",
+    ];
+    for (const field of requiredFields) {
+      if (!props[field]) {
+        return [false, `El campo ${field} es requerido`, null];
+      }
+    }
+    const valitedProps = {
+      number_quota: Number(props.number_quota),
+      price: Number(props.price),
+      type_payment: String(props.type_payment),
+      date_paid: new Date(props.date_paid),
+      receipt_number: String(props.receipt_number),
+      sale: { id_sale: String(props.sale.id_sale) } as SaleIF,
+      user: { id_user: String(props.user.id_user) } as UserIF,
     };
     return [true, "", new QuotasDto(valitedProps)];
   }

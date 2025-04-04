@@ -71,7 +71,8 @@ export class SaleController {
         next: NextFunction
     ) => {
         try {
-            const [status, message, data] = SaleDto.create(req.body);
+            const [status, message, data] = SaleDto.update(req.body);
+            console.log("desde controller",data)
             const id = req.params.id
             const sale = await this.RP.updateSale(id, data as SaleDto);
             res.status(200).json({

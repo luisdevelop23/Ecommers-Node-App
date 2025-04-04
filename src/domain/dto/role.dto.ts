@@ -1,3 +1,5 @@
+import { UserIF } from "../interface/user.interface";
+
 export class RoleDto {
   id_role: string;
   name: string;
@@ -5,6 +7,7 @@ export class RoleDto {
   created_at: Date;
   updated_at: Date;
   status?: boolean;
+  user: UserIF;
 
   constructor(props: { [key: string]: any }) {
     this.id_role = props.id_role;
@@ -13,6 +16,7 @@ export class RoleDto {
     //   this.created_at = props.created_at;
     //   this.updated_at = props.updated_at;
     this.status = props.status;
+    this.user = { id_user: props.user.id_user } as UserIF;
   }
 
   static create(props: { [key: string]: any }) {
@@ -26,6 +30,7 @@ export class RoleDto {
       name: String(props.name),
       fl_dashboard: Boolean(props.fl_dashboard),
       status: Boolean(props.status),
+      user: { id_user: String(props.user.id_user) } as UserIF,
     };
     return [true, "", new RoleDto(valitedProps)];
   }
