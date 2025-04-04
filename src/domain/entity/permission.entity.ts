@@ -1,11 +1,9 @@
 import {
   Column,
-  CreateDateColumn,
   Entity,
   JoinColumn,
   OneToOne,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
+  PrimaryGeneratedColumn
 } from "typeorm";
 import { PermissionIF } from "../interface/permission.interface";
 import { RoleEntity } from "./role.entity";
@@ -33,10 +31,10 @@ export class PermissionEntity implements PermissionIF {
   @Column({ name: "menu", default: false })
   menu: boolean;
 
-  @CreateDateColumn({ name: "created_at" })
+  @Column({ name: "created_at" })
   created_at: Date;
 
-  @UpdateDateColumn({ name: "updated_at" })
+  @Column({ name: "updated_at" })
   updated_at: Date;
 
   @Column({ name: "status", default: true })

@@ -22,7 +22,7 @@ export class PublicationDto {
     this.offer_price = props.offer_price;
     this.detailed_description = props.detailed_description;
     this.html = props.html;
-    // this.created_at = props.created_at;
+    this.created_at = new Date();
     // this.updated_at = props.updated_at;
     this.state = props.state;
     this.id_user = props.id_user;

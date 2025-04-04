@@ -1,4 +1,4 @@
-import { PermissionDto } from "../entity/permission.dto";
+import { PermissionDto } from "../dto/permission.dto";
 import { PermissionEntity } from "../entity/permission.entity";
 
 export abstract class PermissionDatasource {

@@ -1,7 +1,5 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
-import { ProductIF } from "../interface/product.interface";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { PublicationPhotoIF } from "../interface/publication_photo.interface";
-import { UserIF } from "../interface/user.interface";
 import { PublicationEntity } from "./publication.entity";
 import { UserEntity } from "./user.entity";
 
@@ -18,10 +16,10 @@ export class PublicationPhotoEntity implements PublicationPhotoIF{
     @Column({name: "type"})
     type: string;
 
-    @CreateDateColumn({name: "created_date"})
+    @Column({name: "created_date"})
     created_date: Date;
 
-    @UpdateDateColumn({name: "updated_date", nullable: true})
+    @Column({name: "updated_date", nullable: true})
     updated_date?: Date;
 
     @ManyToOne(()=> PublicationEntity, (publication) => publication.publication_photo)

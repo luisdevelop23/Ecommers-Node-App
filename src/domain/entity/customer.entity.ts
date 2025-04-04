@@ -1,16 +1,14 @@
 import {
   Column,
-  CreateDateColumn,
   Entity,
   JoinColumn,
   ManyToOne,
   OneToMany,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
+  PrimaryGeneratedColumn
 } from "typeorm";
 import { customersIF } from "../interface/customer.interface";
-import { UserEntity } from "./user.entity";
 import { SaleEntity } from "./sale.entity";
+import { UserEntity } from "./user.entity";
 
 @Entity({ name: "customer" })
 export class CustomerEntity implements customersIF {
@@ -50,10 +48,10 @@ export class CustomerEntity implements customersIF {
   @Column({ name: "state" })
   state?: boolean;
 
-  @CreateDateColumn({ name: "created_at" })
+  @Column({ name: "created_at" })
   created_at: Date;
 
-  @UpdateDateColumn({ name: "updated_at" })
+  @Column({ name: "updated_at" })
   updated_at?: Date;
 
   @Column({ name: "status", default: true })

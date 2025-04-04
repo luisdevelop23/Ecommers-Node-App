@@ -21,7 +21,7 @@ export class SaleDetailDto {
     this.discount = props.discount;
     this.sub_total = props.sub_total;
     this.total = props.total;
-    // this.created_date = props.created_date;
+    this.created_date = new Date();
     // this.updated_date = props.updated_date;
     this.status = props.status;
     this.sale = { id_sale: props.sale.id_sale } as SaleIF;

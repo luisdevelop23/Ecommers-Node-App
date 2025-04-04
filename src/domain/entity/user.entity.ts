@@ -1,9 +1,7 @@
 import {
   Column,
-  CreateDateColumn,
   Entity,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
+  PrimaryGeneratedColumn
 } from "typeorm";
 import { UserIF } from "../interface/user.interface";
 
@@ -36,10 +34,10 @@ export class UserEntity implements UserIF {
   @Column({ name: "id_role", nullable: true, default: null })
   id_role?: string;
 
-  @CreateDateColumn({ name: "created_at", nullable: false })
+  @Column({ name: "created_at", nullable: false })
   created_at: Date;
 
-  @UpdateDateColumn({ name: "updated_at", nullable: true, default: null })
+  @Column({ name: "updated_at", nullable: true, default: null })
   updated_at?: Date;
 
   @Column({ name: "status", default: true })

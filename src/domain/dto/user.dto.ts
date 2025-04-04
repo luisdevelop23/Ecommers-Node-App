@@ -23,6 +23,7 @@ export class UserDto {
     this.img_profile = props.img_profile;
     this.id_role = props.id_role;
     this.status = props.status;
+    this.created_at = new Date()
   }
 
   static create(props: { [key: string]: any }) {

@@ -1,18 +1,14 @@
 import {
   Column,
-  CreateDateColumn,
   Entity,
   JoinColumn,
   ManyToOne,
   OneToMany,
-  OneToOne,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
+  PrimaryGeneratedColumn
 } from "typeorm";
 import { ProductIF } from "../interface/product.interface";
-import { UserEntity } from "./user.entity";
 import { PublicationEntity } from "./publication.entity";
-import { InventoryEntity } from "./inventory.entity";
+import { UserEntity } from "./user.entity";
 
 @Entity({ name: "products" })
 export class ProductEntity implements ProductIF {
@@ -58,10 +54,10 @@ export class ProductEntity implements ProductIF {
   @Column({ name: "sale_price" })
   sale_price?: number;
 
-  @CreateDateColumn({ name: "created_date" })
+  @Column({ name: "created_date" })
   created_date: Date;
 
-  @UpdateDateColumn({ name: "updated_date" })
+  @Column({ name: "updated_date" })
   updated_date: Date;
 
   @Column({ name: "status", default: true })

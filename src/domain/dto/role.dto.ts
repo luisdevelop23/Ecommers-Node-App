@@ -13,7 +13,7 @@ export class RoleDto {
     this.id_role = props.id_role;
     this.name = props.name;
     this.fl_dashboard = props.fl_dashboard;
-    //   this.created_at = props.created_at;
+      this.created_at = new Date();
     //   this.updated_at = props.updated_at;
     this.status = props.status;
     this.user = { id_user: props.user.id_user } as UserIF;

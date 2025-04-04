@@ -21,7 +21,7 @@ export class QuotasDto {
     this.type_payment = props.type_payment;
     this.date_paid = props.date_paid;
     this.receipt_number = props.receipt_number;
-    // this.created_date = props.created_date;
+    this.created_date = new Date();
     // this.updated_date = props.updated_date;
     this.status = props.status;
     this.sale = { id_sale: props.sale.id_sale } as SaleIF;

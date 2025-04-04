@@ -1,12 +1,10 @@
 import {
   Column,
-  CreateDateColumn,
   Entity,
   JoinColumn,
   ManyToOne,
-  PrimaryColumn,
   PrimaryGeneratedColumn,
-  UpdateDateColumn,
+  UpdateDateColumn
 } from "typeorm";
 import { SaleIF } from "../interface/sale.interface";
 import { CustomerEntity } from "./customer.entity";
@@ -35,11 +33,11 @@ export class SaleEntity implements SaleIF {
   @Column({ name: "sale_status" })
   sale_status: string;
 
-  @CreateDateColumn({ name: "created_at" })
+  @Column({ name: "created_at" })
   created_at: Date;
 
-  @UpdateDateColumn({ name: "updated_at" })
-  updated_at?: Date | undefined;
+  @Column({ name: "updated_at" })
+  updated_at?: Date ;
 
   @Column({ name: "status", default: true })
   status?: boolean;

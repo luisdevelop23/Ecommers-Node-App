@@ -54,8 +54,6 @@ export class ProductDataSourceImpl implements ProductDataSource {
     Object.assign(existingProduct, {
       ...product,
       id_product: existingProduct.id_product,
-      model: existingProduct.model,
-      created_date: existingProduct.created_date,
       updated_at: new Date(),
     });
 

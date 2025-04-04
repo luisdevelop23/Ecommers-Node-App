@@ -28,7 +28,7 @@ export class AplicationDto {
     this.brand = props.brand;
     this.department = props.department;
     this.description = props.description;
-    // this.created_at = props.created_at;
+    this.created_at = new Date();
     // this.updated_at = props.updated_at;
     this.status = props.status;
   }

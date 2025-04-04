@@ -9,7 +9,7 @@ export class InventoryDto {
   constructor(props: { [key: string]: any }) {
     this.id_inventory = props.id_inventory;
     this.quantity = props.quantity;
-    //   this.created_date = props.created_date;
+      this.created_date = new Date();
     //   this.updated_date = props.updated_date;
     this.status = props.status;
     this.id_product = props.id_product;

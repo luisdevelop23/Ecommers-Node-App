@@ -17,7 +17,7 @@ export class InventoryMovementDto {
     this.quantity = props.quantity;
     this.reference = props.reference;
     this.movement_date = props.movement_date;
-    // this.created_date = props.created_date;
+    this.created_date = new Date();
     // this.updated_date = props.updated_date;
     this.status = props.status;
     this.description = props.description;

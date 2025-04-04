@@ -26,6 +26,7 @@ export class SaleDto {
     this.status = props.status;
     this.customer = { id_customer: props.customer.id_customer } as customersIF;
     this.user = { id_user: props.user.id_user } as UserIF;
+    this.created_at = new Date();
   }
 
   static create(props: { [key: string]: any }) {

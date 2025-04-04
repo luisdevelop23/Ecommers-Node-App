@@ -1,4 +1,4 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 import { AplicationIF } from "../interface/application.interface";
 
 
@@ -40,10 +40,10 @@ export class AplicationEntity implements AplicationIF{
     @Column({ name: "description" })
     description?: string ;
 
-    @CreateDateColumn({ name: "created_at" })
+    @Column({ name: "created_at" })
     created_at: Date;
 
-    @UpdateDateColumn({ name: "updated_at" })
+    @Column({ name: "updated_at" })
     updated_at?: Date ;
 
     @Column({ name: "status", default: true })

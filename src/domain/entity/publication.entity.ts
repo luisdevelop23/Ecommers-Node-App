@@ -1,18 +1,15 @@
 import {
   Column,
-  CreateDateColumn,
   Entity,
   JoinColumn,
   ManyToOne,
   OneToMany,
-  OneToOne,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
+  PrimaryGeneratedColumn
 } from "typeorm";
 import { PublicationIF } from "../interface/publication.interface";
-import { UserEntity } from "./user.entity";
 import { ProductEntity } from "./product.entity";
 import { PublicationPhotoEntity } from "./publication_photo.entity";
+import { UserEntity } from "./user.entity";
 
 @Entity({ name: "publication" })
 export class PublicationEntity implements PublicationIF {
@@ -41,10 +38,10 @@ export class PublicationEntity implements PublicationIF {
   @Column({ name: "html", type: "json" })
   html: string;
 
-  @CreateDateColumn({ name: "created_at" })
+  @Column({ name: "created_at" })
   created_at: Date;
 
-  @UpdateDateColumn({ name: "updated_at" })
+  @Column({ name: "updated_at" })
   updated_at?: Date;
 
   @Column({ name: "state", default: true })

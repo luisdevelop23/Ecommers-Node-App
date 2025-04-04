@@ -1,11 +1,9 @@
 import {
   Column,
-  CreateDateColumn,
   Entity,
   JoinColumn,
   ManyToOne,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
+  PrimaryGeneratedColumn
 } from "typeorm";
 import { QuotasIF } from "../interface/quotas.interface";
 import { SaleEntity } from "./sale.entity";
@@ -31,10 +29,10 @@ export class QuotasEntity implements QuotasIF {
   @Column({ name: "receipt_number" })
   receipt_number: string;
 
-  @CreateDateColumn({ name: "created_date" })
+  @Column({ name: "created_date" })
   created_date: Date;
 
-  @UpdateDateColumn({ name: "updated_date" })
+  @Column({ name: "updated_date" })
   updated_date?: Date;
 
   @Column({ name: "status", default: true })

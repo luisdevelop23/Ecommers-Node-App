@@ -10,7 +10,7 @@ export class BrandDto {
     this.id_brand = props.id_brand;
     this.name = props.name;
     this.url_image = props.url_image;
-    // this.created_date = props.created_date;
+    this.created_date = new Date();
     // this.updated_date = props.updated_date;
     this.id_user = props.id_user;
   }

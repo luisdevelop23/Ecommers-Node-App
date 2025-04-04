@@ -1,11 +1,9 @@
 import {
   Column,
-  CreateDateColumn,
   Entity,
   JoinColumn,
   ManyToOne,
-  PrimaryColumn,
-  UpdateDateColumn,
+  PrimaryColumn
 } from "typeorm";
 import { BrandIF } from "../interface/brand.interface";
 import { UserEntity } from "./user.entity";
@@ -21,10 +19,10 @@ export class BrandEntity implements BrandIF {
   @Column({ name: "url_image" })
   url_image: string;
 
-  @CreateDateColumn({ name: "created_date" })
+  @Column({ name: "created_date" })
   created_date: Date;
 
-  @UpdateDateColumn({ name: "updated_date" })
+  @Column({ name: "updated_date" })
   updated_date?: Date;
 
   @ManyToOne(() => UserEntity)

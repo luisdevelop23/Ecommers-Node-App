@@ -14,7 +14,9 @@ export class ProductDto {
   tires?: string;
   purchase_price: number;
   sale_price?: number;
-  user: UserIF;
+  created_date: Date;
+  updated_date: Date;
+  user?: UserIF;
   status?: boolean;
 
   constructor(props: { [key: string]: any }) {
@@ -32,6 +34,7 @@ export class ProductDto {
     this.purchase_price = props.purchase_price;
     this.sale_price = props.sale_price;
     this.user = { id_user: props.user.id_user } as UserIF;
+    this.created_date = new Date()
     this.status = props.status;
   }
 

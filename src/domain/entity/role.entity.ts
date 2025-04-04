@@ -1,15 +1,11 @@
 import {
   Column,
-  CreateDateColumn,
   Entity,
   JoinColumn,
   ManyToOne,
-  OneToOne,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
+  PrimaryGeneratedColumn
 } from "typeorm";
 import { RoleIF } from "../interface/role.interface";
-import { PermissionEntity } from "./permission.entity";
 import { UserEntity } from "./user.entity";
 
 @Entity({ name: "role" })
@@ -23,10 +19,10 @@ export class RoleEntity implements RoleIF {
   @Column({ name: "fl_dashboard" })
   fl_dashboard: boolean;
 
-  @CreateDateColumn({ name: "created_at" })
+  @Column({ name: "created_at" })
   created_at: Date;
 
-  @UpdateDateColumn({ name: "updated_at" })
+  @Column({ name: "updated_at" })
   updated_at: Date;
 
   @Column({ name: "status", default: true })

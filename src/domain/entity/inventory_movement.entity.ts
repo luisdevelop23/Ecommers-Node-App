@@ -1,17 +1,13 @@
 import {
   Column,
-  CreateDateColumn,
   Entity,
   JoinColumn,
   ManyToOne,
-  OneToMany,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
+  PrimaryGeneratedColumn
 } from "typeorm";
 import { InventoryMovementIF } from "../interface/inventory_movement.interface";
-import { InventoryEntity } from "./inventory.entity";
-import { UserEntity } from "./user.entity";
 import { ProductEntity } from "./product.entity";
+import { UserEntity } from "./user.entity";
 
 @Entity({ name: "inventory_movement" })
 export class InventoryMovementEntity implements InventoryMovementIF {
@@ -30,10 +26,10 @@ export class InventoryMovementEntity implements InventoryMovementIF {
   @Column({ name: "movement_date" })
   movement_date: Date;
 
-  @CreateDateColumn({ name: "created_date" })
+  @Column({ name: "created_date" })
   created_date: Date;
 
-  @UpdateDateColumn({ name: "updated_date", nullable: true })
+  @Column({ name: "updated_date", nullable: true })
   updated_date?: Date;
 
   @Column({ name: "status", default: true })

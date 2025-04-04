@@ -18,7 +18,7 @@ export class PermissionDto {
     this.update = props.update;
     this.delete = props.delete;
     this.menu = props.menu;
-    // this.created_at = props.created_at;
+    this.created_at = new Date();
     // this.updated_at = props.updated_at;
     this.status = props.status;
   }

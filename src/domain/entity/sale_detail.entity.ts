@@ -1,16 +1,13 @@
 import {
   Column,
-  CreateDateColumn,
   Entity,
   JoinColumn,
   ManyToOne,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
+  PrimaryGeneratedColumn
 } from "typeorm";
 import { SaleDetailIF } from "../interface/sale_detail.interface";
-import { UserEntity } from "./user.entity";
-import { SaleEntity } from "./sale.entity";
 import { ProductEntity } from "./product.entity";
+import { SaleEntity } from "./sale.entity";
 
 @Entity({ name: "sale_detail" })
 export class SaleDetailEntity implements SaleDetailIF {
@@ -32,10 +29,10 @@ export class SaleDetailEntity implements SaleDetailIF {
   @Column({ name: "total" })
   total: number;
 
-  @CreateDateColumn({ name: "created_date" })
+  @Column({ name: "created_date" })
   created_date: Date;
 
-  @UpdateDateColumn({ name: "updated_date" })
+  @Column({ name: "updated_date" })
   updated_date?: Date;
 
   @Column({ name: "status", default: true })
