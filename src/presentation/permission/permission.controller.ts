@@ -1,66 +1,64 @@
 import { NextFunction, Request, Response } from "express";
-import { SaleDetailRepository } from "../../domain/repository/sale_dateil.repository";
-import { SaleDetailDto } from "../../domain/dto/sale_detail.dto";
+import { PermissionRepository } from "../../domain/repository/permission.repository";
+import { PermissionDto } from "../../domain/dto/permission.dto";
 
-export class SaleDetailController {
-  constructor(private readonly repository: SaleDetailRepository) {}
+export class PermissionController {
+  constructor(private readonly repository: PermissionRepository) {}
 
-  public getSaleDetails = async (
+  public getPermissions = async (
     req: Request,
     res: Response,
     next: NextFunction
   ) => {
     try {
-      const saleDetails = await this.repository.getSaleDetails();
-      if (saleDetails.length === 0) {
+      const permission = await this.repository.getPermissions();
+      if (permission.length === 0) {
         res.status(200).json({
-          message: "No se encontraron ventas",
+          message: "No se encontraron permisos",
           data: null,
           result: false,
         });
       }
       res.status(200).json({
-        message: "ventas obtenidos",
-        data: saleDetails,
-        result: true,
+        message: "Permisos encontrados",
+        data: permission,
+        result: false,
       });
     } catch (error) {
       next(error);
     }
   };
-
-  public getSaleDetail = async (
+  public getPermissionById = async (
     req: Request,
     res: Response,
     next: NextFunction
   ) => {
     try {
       const id = req.params.id;
-      const saleDetails = await this.repository.getSaleDetail(id);
-      if (!saleDetails) {
+      const permission = await this.repository.getPermissionById(id);
+      if (!permission) {
         res.status(200).json({
-          message: "No se encontraron ventas",
+          message: "No se encontraron permisos",
           data: null,
           result: false,
         });
       }
       res.status(200).json({
-        message: "ventas obtenidos",
-        data: saleDetails,
-        result: true,
+        message: "Permiso encontrado",
+        data: permission,
+        result: false,
       });
     } catch (error) {
       next(error);
     }
   };
-
-  public createSaleDetail = async (
+  public createPermission = async (
     req: Request,
     res: Response,
     next: NextFunction
   ) => {
     try {
-      const [status, message, data] = SaleDetailDto.create(req.body);
+      const [status, message, data] = PermissionDto.create(req.body);
       if (!status) {
         res.status(200).json({
           message: message,
@@ -68,12 +66,12 @@ export class SaleDetailController {
           result: false,
         });
       } else {
-        const saleDetail = await this.repository.createSaleDetail(
-          data as SaleDetailDto
+        const permission = await this.repository.createPermission(
+          data as PermissionDto
         );
         res.status(200).json({
-          message: "venta creada",
-          data: saleDetail,
+          message: "Permiso creado",
+          data: permission,
           result: true,
         });
       }
@@ -81,15 +79,13 @@ export class SaleDetailController {
       next(error);
     }
   };
-
-  public updateSaleDetail = async (
+  public updatePermission = async (
     req: Request,
     res: Response,
     next: NextFunction
   ) => {
     try {
-      console.log(req.body);
-      const [status, message, data] = SaleDetailDto.create(req.body);
+      const [status, message, data] = PermissionDto.update(req.body);
       if (!status) {
         res.status(200).json({
           message: message,
@@ -98,13 +94,13 @@ export class SaleDetailController {
         });
       } else {
         const id = req.params.id;
-        const saleDetail = await this.repository.updateSaleDetail(
+        const permission = await this.repository.updatePermission(
           id,
-          data as SaleDetailDto
+          data as PermissionDto
         );
         res.status(200).json({
-          message: "venta actualizada",
-          data: saleDetail,
+          message: "Permiso creado",
+          data: permission,
           result: true,
         });
       }
@@ -112,18 +108,17 @@ export class SaleDetailController {
       next(error);
     }
   };
-
-  public deleteSaleDetail = async (
+  public deletePermission = async (
     req: Request,
     res: Response,
     next: NextFunction
   ) => {
     try {
       const id = req.params.id;
-      const saleDetail = await this.repository.deleteSaleDetail(id);
+      const permissionDelete = await this.repository.deletePermission(id);
       res.status(200).json({
-        message: "venta eliminada",
-        data: saleDetail,
+        message: "Permiso eliminado",
+        data: { id: id, status: permissionDelete.status },
         result: true,
       });
     } catch (error) {

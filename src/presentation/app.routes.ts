@@ -6,10 +6,12 @@ import { SaleRoutes } from "./sale/sale.routes";
 import { SaleDetailRoutes } from "./sale_detail/sale_detail.routes";
 import { QuotasRoutes } from "./quotas/quotas.routes";
 import { RoleRoutes } from "./role/role.routes";
+import { PermissionRoutes } from "./permission/permission.routes";
 
 export class AppRoutes {
   static get routes(): Router {
     const router = Router();
+    router.use("/api/permission", PermissionRoutes.routes);
     router.use("/api/product", ProductRoutes.routes);
     router.use("/api/quotas", QuotasRoutes.routes);
     router.use("/api/role", RoleRoutes.routes);

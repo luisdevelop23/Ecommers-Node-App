@@ -4,16 +4,16 @@ import { RoleEntity } from "../../domain/entity/role.entity";
 import { TypeOrmCustomize } from "../../plugins/type-orm/type-orm";
 
 export class RoleDatasourceImpl implements RoleDataSource {
-  private RP = TypeOrmCustomize.getRepository(RoleEntity);
+  private repository = TypeOrmCustomize.getRepository(RoleEntity);
   async getRoles(): Promise<RoleEntity[]> {
-    return await this.RP.find({
+    return await this.repository.find({
       where: {
         status: true,
       },
     });
   }
   async getRole(id: string): Promise<RoleEntity> {
-    const role = await this.RP.findOne({
+    const role = await this.repository.findOne({
       where: { id_role: id },
     });
     if (!role) {
@@ -22,11 +22,11 @@ export class RoleDatasourceImpl implements RoleDataSource {
     return role;
   }
   async createRole(role: RoleDto): Promise<RoleEntity> {
-    const newRole = await this.RP.create(role);
-    return this.RP.save(newRole);
+    const newRole = await this.repository.create(role);
+    return this.repository.save(newRole);
   }
   async updateRole(id: string, role: RoleDto): Promise<RoleEntity> {
-    const existingRole = await this.RP.findOne({
+    const existingRole = await this.repository.findOne({
         where: { id_role: id },
     });
 
@@ -39,17 +39,17 @@ export class RoleDatasourceImpl implements RoleDataSource {
     existingRole.status = role.status !== undefined ? role.status : existingRole.status;
     existingRole.updated_at = new Date();
 
-    return this.RP.save(existingRole);
+    return this.repository.save(existingRole);
 }
 
   async deleteRole(id: string): Promise<RoleEntity> {
-    const roleToDelete = await this.RP.findOne({
+    const roleToDelete = await this.repository.findOne({
       where: { id_role: id },
     });
     if (!roleToDelete) {
       throw new Error("Role no encontrado");
     }
     roleToDelete.status = false;
-    return this.RP.save(roleToDelete);
+    return this.repository.save(roleToDelete);
   }
 }

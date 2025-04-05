@@ -3,7 +3,7 @@ import { SaleRepository } from "../../domain/repository/sale.repository";
 import { SaleDto } from "../../domain/dto/sale.dto";
 
 export class SaleController {
-    constructor(private readonly RP: SaleRepository) { }
+    constructor(private readonly repository: SaleRepository) { }
 
     public getSales = async (
         req: Request,
@@ -11,7 +11,7 @@ export class SaleController {
         next: NextFunction
     ) => {
         try {
-            const sales = await this.RP.getSales();
+            const sales = await this.repository.getSales();
             if (sales.length === 0) {
                 res.status(200).json({
                     message: "No se encontraron ventas",
@@ -35,7 +35,7 @@ export class SaleController {
         next: NextFunction
     ) => {
         try {
-            const sale = await this.RP.getSale(req.params.id);
+            const sale = await this.repository.getSale(req.params.id);
             res.status(200).json({
                 message: "venta obtenido",
                 data: sale,
@@ -54,7 +54,7 @@ export class SaleController {
         try {
             console.log("sale controller", req.body);
             const [status, message, data] = SaleDto.create(req.body);
-            const sale = await this.RP.createSale(data as SaleDto);
+            const sale = await this.repository.createSale(data as SaleDto);
             res.status(200).json({
                 message: "ventas creadas",
                 data: sale,
@@ -74,7 +74,7 @@ export class SaleController {
             const [status, message, data] = SaleDto.update(req.body);
             console.log("desde controller",data)
             const id = req.params.id
-            const sale = await this.RP.updateSale(id, data as SaleDto);
+            const sale = await this.repository.updateSale(id, data as SaleDto);
             res.status(200).json({
                 message: "venta actualizadas",
                 data: sale,
@@ -91,7 +91,7 @@ export class SaleController {
         next: NextFunction
     ) => {
         try {
-            const sale = await this.RP.deleteSale(req.params.id);
+            const sale = await this.repository.deleteSale(req.params.id);
             res.status(200).json({
                 message: "ventas Eliminada correctamente",
                 data: sale,

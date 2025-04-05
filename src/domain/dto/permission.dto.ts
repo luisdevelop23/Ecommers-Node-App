@@ -1,3 +1,5 @@
+import { RoleIF } from "../interface/role.interface";
+
 export class PermissionDto {
   id_permission: string;
   name: string;
@@ -7,8 +9,9 @@ export class PermissionDto {
   delete: boolean;
   menu: boolean;
   created_at: Date;
-  updated_at: Date;
+  updated_at?: Date;
   status: boolean;
+  role: RoleIF;
 
   constructor(props: { [key: string]: any }) {
     this.id_permission = props.id_permission;
@@ -21,6 +24,7 @@ export class PermissionDto {
     this.created_at = new Date();
     // this.updated_at = props.updated_at;
     this.status = props.status;
+    this.role = { id_role: props.role.id_role } as RoleIF;
   }
 
   static create(props: { [key: string]: any }) {
@@ -38,6 +42,9 @@ export class PermissionDto {
         return [false, `El campo ${field} es requerido`, null];
       }
     }
+    return [true, "", new PermissionDto(props)];
+  }
+  static update(props: { [key: string]: any }) {
     return [true, "", new PermissionDto(props)];
   }
 }

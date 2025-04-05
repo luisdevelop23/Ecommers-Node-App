@@ -35,7 +35,7 @@ export class PermissionEntity implements PermissionIF {
   created_at: Date;
 
   @Column({ name: "updated_at" })
-  updated_at: Date;
+  updated_at?: Date;
 
   @Column({ name: "status", default: true })
   status: boolean;

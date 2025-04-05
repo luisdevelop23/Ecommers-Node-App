@@ -5,16 +5,16 @@ import { generateCode } from "../../helpers/generate_code";
 import { TypeOrmCustomize } from "../../plugins/type-orm/type-orm";
 
 export class ProductDataSourceImpl implements ProductDataSource {
-  private RP = TypeOrmCustomize.getRepository(ProductEntity);
+  private repository = TypeOrmCustomize.getRepository(ProductEntity);
   async getProducts(): Promise<ProductEntity[]> {
-    return await this.RP.find({
+    return await this.repository.find({
       where: { status: true },
       order: { created_date: "DESC" },
     });
   }
 
   async getProduct(cod_product: string): Promise<ProductEntity> {
-    const product = await this.RP.findOne({
+    const product = await this.repository.findOne({
       where: {
         cod_product,
         // status: true,
@@ -31,19 +31,19 @@ export class ProductDataSourceImpl implements ProductDataSource {
 
   async createProduct(product: ProductDto): Promise<ProductEntity> {
     console.log("productooooooo", product);
-    const newProduct = this.RP.create({
+    const newProduct = this.repository.create({
       ...product,
-      cod_product: await generateCode(this.RP, "P", "cod_product"),
+      cod_product: await generateCode(this.repository, "P", "cod_product"),
     });
 
-    return this.RP.save(newProduct);
+    return this.repository.save(newProduct);
   }
 
   async updateProduct(
     cod_product: string,
     product: ProductDto
   ): Promise<ProductEntity> {
-    const existingProduct = await this.RP.findOne({
+    const existingProduct = await this.repository.findOne({
       where: { cod_product, status: true },
     });
 
@@ -57,11 +57,11 @@ export class ProductDataSourceImpl implements ProductDataSource {
       updated_at: new Date(),
     });
 
-    return this.RP.save(existingProduct);
+    return this.repository.save(existingProduct);
   }
 
   async deleteProduct(cod_product: string): Promise<ProductEntity> {
-    const product = await this.RP.findOne({ where: { cod_product } });
+    const product = await this.repository.findOne({ where: { cod_product } });
 
     if (!product) {
       throw new Error("Producto no encontrado");
@@ -69,6 +69,6 @@ export class ProductDataSourceImpl implements ProductDataSource {
 
     product.status = false;
 
-    return this.RP.save(product);
+    return this.repository.save(product);
   }
 }

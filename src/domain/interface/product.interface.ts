@@ -16,7 +16,7 @@ export interface ProductIF {
   purchase_price: number;
   sale_price?: number;
   created_date: Date;
-  updated_date: Date;
+  updated_date?: Date;
   user: UserIF;
   status?: boolean;
 }

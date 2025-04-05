@@ -58,7 +58,7 @@ export class ProductEntity implements ProductIF {
   created_date: Date;
 
   @Column({ name: "updated_date" })
-  updated_date: Date;
+  updated_date?: Date;
 
   @Column({ name: "status", default: true })
   status?: boolean;

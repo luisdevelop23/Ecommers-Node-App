@@ -4,15 +4,15 @@ import { SaleEntity } from "../../domain/entity/sale.entity";
 import { TypeOrmCustomize } from "../../plugins/type-orm/type-orm";
 
 export class SaleDataSourceImpl implements SaleDataSource {
-  private RP = TypeOrmCustomize.getRepository(SaleEntity);
+  private repository = TypeOrmCustomize.getRepository(SaleEntity);
 
   async getSales(): Promise<SaleEntity[]> {
-    return await this.RP.find({
+    return await this.repository.find({
       order: { created_at: "DESC" },
     });
   }
   async getSale(id: string): Promise<SaleEntity> {
-    const sale = await this.RP.findOne({ where: { id_sale: id } });
+    const sale = await this.repository.findOne({ where: { id_sale: id } });
     if (!sale) {
       throw new Error("Sale no encontrado");
     }
@@ -20,12 +20,12 @@ export class SaleDataSourceImpl implements SaleDataSource {
   }
   async createSale(sale: SaleDto): Promise<SaleEntity> {
     console.log("sale desde datasource impl", sale);
-    const newSale = this.RP.create(sale);
-    return this.RP.save(newSale);
+    const newSale = this.repository.create(sale);
+    return this.repository.save(newSale);
   }
   async updateSale(id: string, sale: SaleDto): Promise<SaleEntity> {
     console.log(id, sale);
-    const existingSale = await this.RP.findOne({ where: { id_sale: id } });
+    const existingSale = await this.repository.findOne({ where: { id_sale: id } });
 
     if (!existingSale) {
         throw new Error("Sale no encontrado");
@@ -41,14 +41,14 @@ export class SaleDataSourceImpl implements SaleDataSource {
     existingSale.updated_at = new Date(); 
 
     // Guardamos los cambios
-    return this.RP.save(existingSale);
+    return this.repository.save(existingSale);
 }
   async deleteSale(id: string): Promise<SaleEntity> {
-    const saleToDelete = await this.RP.findOne({ where: { id_sale: id } });
+    const saleToDelete = await this.repository.findOne({ where: { id_sale: id } });
     if (!saleToDelete) {
       throw new Error("Sale no encontrado");
     }
     saleToDelete.status = false;
-    return this.RP.save(saleToDelete);
+    return this.repository.save(saleToDelete);
   }
 }
