@@ -7,6 +7,280 @@
 	},
 	"item": [
 		{
+			"name": "Inventory",
+			"item": [
+				{
+					"name": "get_invetory",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/inventory",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"inventory"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_inveoty_by_id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/inventory/I001",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"inventory",
+								"I001"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_inventory",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"quantity\": 1,\r\n    \"product\": {\r\n        \"id_product\": \"11824a75-0396-4fd0-8960-4e7ffe867cd8\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/inventory",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"inventory"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update_inventory",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"quantity\": 4,\r\n    \"product\": {\r\n        \"id_product\": \"11824a75-0396-4fd0-8960-4e7ffe867cd8\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/inventory/I001",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"inventory",
+								"I001"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete_inventory",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/inventory/I001",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"inventory",
+								"I001"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Movement",
+			"item": [
+				{
+					"name": "get_movements",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/movement",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"movement"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_movement_by_id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/movement/M001",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"movement",
+								"M001"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_movement_by_product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/movement/P001/product",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"movement",
+								"P001",
+								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_movement",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"movement_type\": \"ENTRADA\", \r\n  \"quantity\": 1,\r\n  \"reference\": \"Factura de Compra #12345\",\r\n  \"movement_date\": \"2025-04-01T10:00:00.000Z\",\r\n  \"status\": true, \r\n  \"description\": \"Movimiento de inventario por compra de nuevos productos\",\r\n  \"product\": {\r\n    \"id_product\": \"P001\"\r\n  },\r\n  \"user\": {\r\n    \"id_user\": \"1baf0a5e-988f-4be5-83b3-c7b65e1d4a99\"\r\n  }\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/movement",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"movement"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update_movement",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"movement_type\": \"ENTRADA-edit\", \r\n  \"quantity\": 11,\r\n  \"reference\": \"edit\",\r\n  \"description\": \"edit\",\r\n  \"product\": {\r\n    \"id_product\": \"P001\"\r\n  },\r\n  \"user\": {\r\n    \"id_user\": \"1baf0a5e-988f-4be5-83b3-c7b65e1d4a99\"\r\n  }\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/movement/M001",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"movement",
+								"M001"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete_movement",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/movement/M001",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"movement",
+								"M001"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Permission",
 			"item": [
 				{
@@ -472,7 +746,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"test edit\",\r\n    \"fl_dashboard\": true,\r\n    \"status\": true,\r\n    \"user\": {\r\n        \"id_user\": \"d1212mjd12-d2112diopj12d\"\r\n    }\r\n}",
+							"raw": "{\r\n    \"name\": \"test edit\",\r\n    \"fl_dashboard\": true,\r\n    \"status\": true,\r\n    \"user\": {\r\n        \"id_user\": \"ebf02833-9f04-44b1-9a88-f8bc741da461\"\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -480,7 +754,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/role/19d30b87-296e-4c85-828d-350255f90db0",
+							"raw": "http://localhost:3000/api/role/a1c03d90-86e3-4db9-8f28-6a38d6795187",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -489,7 +763,7 @@
 							"path": [
 								"api",
 								"role",
-								"19d30b87-296e-4c85-828d-350255f90db0"
+								"a1c03d90-86e3-4db9-8f28-6a38d6795187"
 							]
 						}
 					},
@@ -695,7 +969,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"sale_date\": \"2024-04-01T12:00:00.000Z\",\r\n    \"total\": 1400.75,\r\n    \"quotas\": 1,\r\n    \"type_document\": \"Factura\",\r\n    \"code_document\": \"F123456\",\r\n    \"sale_status\": \"Pendiente\",\r\n    \"customer\": {\r\n        \"id_customer\": \"5b3aa4bc-0f62-11f0-ba3b-90e868c79370\"\r\n    },\r\n    \"user\": {\r\n        \"id_user\": \"d1212mjd12-d2112diopj12d\"\r\n    }\r\n}",
+							"raw": "{\r\n    \"total\": 1400.75,\r\n    \"quotas\": 1,\r\n    \"type_document\": \"Boleta\",\r\n    \"sale_status\": \"Pendiente\",\r\n    \"customer\": {\r\n        \"id_customer\": \"7f5a0a03-00d7-40e0-99a8-65557c659a98\"\r\n    },\r\n    \"user\": {\r\n        \"id_user\": \"b353870c-3104-4d49-a48f-23c0e24791a0\"\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -847,7 +1121,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/user/d1212mjd12-d2112diopj12d",
+							"raw": "http://localhost:3000/api/user/b353870c-3104-4d49-a48f-23c0e24791a0",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -856,7 +1130,7 @@
 							"path": [
 								"api",
 								"user",
-								"d1212mjd12-d2112diopj12d"
+								"b353870c-3104-4d49-a48f-23c0e24791a0"
 							]
 						}
 					},
