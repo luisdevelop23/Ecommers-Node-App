@@ -33,11 +33,11 @@ export class SaleEntity implements SaleIF {
   @Column({ name: "sale_status" })
   sale_status: string;
 
-  @Column({ name: "created_at" })
-  created_at: Date;
+  @Column({ name: "created_date" })
+  created_date: Date;
 
-  @Column({ name: "updated_at" })
-  updated_at?: Date ;
+  @Column({ name: "updated_date", nullable: true })
+  updated_date?: Date ;
 
   @Column({ name: "status", default: true })
   status?: boolean;
@@ -65,8 +65,8 @@ export class SaleEntity implements SaleIF {
     this.type_document = params.type_document;
     this.code_document = params.code_document;
     this.sale_status = params.sale_status;
-    this.created_at = params.created_at;
-    this.updated_at = params.updated_at;
+    this.created_date = params.created_date;
+    this.updated_date = params.updated_date;
     this.status = params.status;
     this.id_customer = params.customer.id_customer;
     this.id_user = params.user.id_user;

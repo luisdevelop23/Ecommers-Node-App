@@ -1,6 +1,7 @@
 import { SaleDataSource } from "../../domain/datasource/sale.datasource";
 import { SaleDto } from "../../domain/dto/sale.dto";
 import { SaleEntity } from "../../domain/entity/sale.entity";
+import { generateCode } from "../../helpers/generate_code";
 import { TypeOrmCustomize } from "../../plugins/type-orm/type-orm";
 
 export class SaleDataSourceImpl implements SaleDataSource {
@@ -8,7 +9,7 @@ export class SaleDataSourceImpl implements SaleDataSource {
 
   async getSales(): Promise<SaleEntity[]> {
     return await this.repository.find({
-      order: { created_at: "DESC" },
+      order: { created_date: "DESC" },
     });
   }
   async getSale(id: string): Promise<SaleEntity> {
@@ -19,32 +20,50 @@ export class SaleDataSourceImpl implements SaleDataSource {
     return sale;
   }
   async createSale(sale: SaleDto): Promise<SaleEntity> {
-    console.log("sale desde datasource impl", sale);
-    const newSale = this.repository.create(sale);
+    function co(type: string): string {
+      if (type.toUpperCase() === "BOLETA") {
+        return "B";
+      } else if (type.toUpperCase() === "FACTURA") {
+        return "F";
+      } else if (type.toUpperCase() === "RECIBO") {
+        return "R";
+      }
+      throw new Error("Tipo de documento desconocido");
+    }
+    const newSale = this.repository.create({
+      ...sale,
+      id_sale: await generateCode(this.repository, "V", "id_sale"),
+      // code_document: sale.code_document !== "undefined" || "" 
+      //   ? sale.code_document
+      //   : await generateCode(
+      //       this.repository,
+      //       co(sale.type_document),
+      //       "code_document"
+      //     ),
+    });
     return this.repository.save(newSale);
   }
   async updateSale(id: string, sale: SaleDto): Promise<SaleEntity> {
     console.log(id, sale);
-    const existingSale = await this.repository.findOne({ where: { id_sale: id } });
+    const existingSale = await this.repository.findOne({
+      where: { id_sale: id },
+    });
 
     if (!existingSale) {
-        throw new Error("Sale no encontrado");
+      throw new Error("Sale no encontrado");
     }
-    existingSale.sale_date = sale.sale_date || existingSale.sale_date; 
-    existingSale.total = sale.total !== undefined ? sale.total : existingSale.total; 
-    existingSale.quotas = sale.quotas || existingSale.quotas; 
-    existingSale.type_document = sale.type_document || existingSale.type_document; 
-    existingSale.code_document = sale.code_document || existingSale.code_document; 
-    existingSale.sale_status = sale.sale_status || existingSale.sale_status; 
-    existingSale.status = sale.status !== undefined ? sale.status : existingSale.status;
-
-    existingSale.updated_at = new Date(); 
-
-    // Guardamos los cambios
+    Object.assign(existingSale, {
+      ...sale,
+      id_sale: existingSale.id_sale,
+      created_date: existingSale.created_date,
+      updated_date: new Date(),
+    });
     return this.repository.save(existingSale);
-}
+  }
   async deleteSale(id: string): Promise<SaleEntity> {
-    const saleToDelete = await this.repository.findOne({ where: { id_sale: id } });
+    const saleToDelete = await this.repository.findOne({
+      where: { id_sale: id },
+    });
     if (!saleToDelete) {
       throw new Error("Sale no encontrado");
     }

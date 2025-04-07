@@ -8,8 +8,8 @@ export class UserDto {
   email?: string;
   img_profile?: string;
   id_role?: string;
-  created_at?: Date;
-  updated_at?: Date;
+  created_date?: Date;
+  updated_date?: Date;
   status?: boolean;
 
   constructor(props: { [key: string]: any }) {
@@ -23,7 +23,7 @@ export class UserDto {
     this.img_profile = props.img_profile;
     this.id_role = props.id_role;
     this.status = props.status;
-    this.created_at = new Date()
+    this.created_date = new Date()
   }
 
   static create(props: { [key: string]: any }) {

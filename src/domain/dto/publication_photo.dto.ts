@@ -2,8 +2,8 @@ export class PublicationPhotoDto {
   id_publication_photo: string;
   url_image: string;
   type: string;
-  created_at: Date;
-  updated_at?: Date;
+  created_date: Date;
+  updated_date?: Date;
   id_publication: string;
   id_user: string;
 
@@ -11,8 +11,8 @@ export class PublicationPhotoDto {
     this.id_publication_photo = props.id_publication_photo;
     this.url_image = props.url_image;
     this.type = props.type;
-      this.created_at = new Date();
-    //   this.updated_at = props.updated_at;
+      this.created_date = new Date();
+    //   this.updated_date = props.updated_date;
     this.id_publication = props.id_publication;
     this.id_user = props.id_user;
   }

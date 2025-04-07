@@ -2,6 +2,7 @@ import {
   Column,
   Entity,
   JoinColumn,
+  ManyToOne,
   OneToOne,
   PrimaryGeneratedColumn
 } from "typeorm";
@@ -31,16 +32,16 @@ export class PermissionEntity implements PermissionIF {
   @Column({ name: "menu", default: false })
   menu: boolean;
 
-  @Column({ name: "created_at" })
-  created_at: Date;
+  @Column({ name: "created_date" })
+  created_date: Date;
 
-  @Column({ name: "updated_at" })
-  updated_at?: Date;
+  @Column({ name: "updated_date", nullable: true })
+  updated_date?: Date;
 
   @Column({ name: "status", default: true })
   status: boolean;
 
-  @OneToOne(() => RoleEntity)
+  @ManyToOne(() => RoleEntity)
   @JoinColumn({ name: "id_role" })
   role: RoleEntity;
 
@@ -56,8 +57,8 @@ export class PermissionEntity implements PermissionIF {
     this.update = params.update;
     this.delete = params.delete;
     this.menu = params.menu;
-    this.created_at = params.created_at;
-    this.updated_at = params.updated_at;
+    this.created_date = params.created_date;
+    this.updated_date = params.updated_date;
     this.status = params.status;
   }
 }

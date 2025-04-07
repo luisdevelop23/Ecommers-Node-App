@@ -7,8 +7,8 @@ export class PublicationDto {
   offer_price?: number;
   detailed_description?: string;
   html: string;
-  created_at: Date;
-  updated_at?: Date;
+  created_date: Date;
+  updated_date?: Date;
   state?: boolean;
   id_user: string;
   id_product: string;
@@ -22,8 +22,8 @@ export class PublicationDto {
     this.offer_price = props.offer_price;
     this.detailed_description = props.detailed_description;
     this.html = props.html;
-    this.created_at = new Date();
-    // this.updated_at = props.updated_at;
+    this.created_date = new Date();
+    // this.updated_date = props.updated_date;
     this.state = props.state;
     this.id_user = props.id_user;
     this.id_product = props.id_product;

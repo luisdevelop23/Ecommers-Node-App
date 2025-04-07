@@ -11,8 +11,8 @@ export interface PublicationIF {
   offer_price?: number;
   detailed_description?: string;
   html: string;
-  created_at: Date;
-  updated_at?: Date;
+  created_date: Date;
+  updated_date?: Date;
   user: UserIF;
   state?: boolean;
 }

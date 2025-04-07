@@ -34,11 +34,11 @@ export class UserEntity implements UserIF {
   @Column({ name: "id_role", nullable: true, default: null })
   id_role?: string;
 
-  @Column({ name: "created_at", nullable: false })
-  created_at: Date;
+  @Column({ name: "created_date", nullable: false })
+  created_date: Date;
 
-  @Column({ name: "updated_at", nullable: true, default: null })
-  updated_at?: Date;
+  @Column({ name: "updated_date", nullable: true, default: null })
+  updated_date?: Date;
 
   @Column({ name: "status", default: true })
   status?: boolean;

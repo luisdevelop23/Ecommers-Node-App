@@ -38,11 +38,11 @@ export class PublicationEntity implements PublicationIF {
   @Column({ name: "html", type: "json" })
   html: string;
 
-  @Column({ name: "created_at" })
-  created_at: Date;
+  @Column({ name: "created_date" })
+  created_date: Date;
 
-  @Column({ name: "updated_at" })
-  updated_at?: Date;
+  @Column({ name: "updated_date" })
+  updated_date?: Date;
 
   @Column({ name: "state", default: true })
   state?: boolean;
@@ -78,6 +78,7 @@ export class PublicationEntity implements PublicationIF {
     this.detailed_description = params.detailed_description;
     this.html = params.html;
     this.id_user = params.user.id_user;
+    this.updated_date = params.updated_date;
     this.state = params.state;
   }
 }

@@ -11,8 +11,8 @@ export class AplicationDto {
   brand?: string;
   department?: boolean;
   description?: string;
-  created_at: Date;
-  updated_at?: Date;
+  created_date: Date;
+  updated_date?: Date;
   status?: boolean;
 
   constructor(props: { [key: string]: any }) {
@@ -28,8 +28,8 @@ export class AplicationDto {
     this.brand = props.brand;
     this.department = props.department;
     this.description = props.description;
-    this.created_at = new Date();
-    // this.updated_at = props.updated_at;
+    this.created_date = new Date();
+    // this.updated_date = props.updated_date;
     this.status = props.status;
   }
   static create(props: { [key: string]: any }) {

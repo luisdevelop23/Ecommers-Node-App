@@ -8,8 +8,8 @@ export class PermissionDto {
   update: boolean;
   delete: boolean;
   menu: boolean;
-  created_at: Date;
-  updated_at?: Date;
+  created_date: Date;
+  updated_date?: Date;
   status: boolean;
   role: RoleIF;
 
@@ -21,22 +21,14 @@ export class PermissionDto {
     this.update = props.update;
     this.delete = props.delete;
     this.menu = props.menu;
-    this.created_at = new Date();
-    // this.updated_at = props.updated_at;
+    this.created_date = new Date();
+    // this.updated_date = props.updated_date;
     this.status = props.status;
     this.role = { id_role: props.role.id_role } as RoleIF;
   }
 
   static create(props: { [key: string]: any }) {
-    const requiredFields = [
-      "name",
-      "view",
-      "create",
-      "update",
-      "delete",
-      "menu",
-      "status",
-    ];
+    const requiredFields = ["name", "status", "role"];
     for (const field of requiredFields) {
       if (!props[field]) {
         return [false, `El campo ${field} es requerido`, null];

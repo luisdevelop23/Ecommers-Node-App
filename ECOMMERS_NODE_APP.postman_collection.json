@@ -7,6 +7,132 @@
 	},
 	"item": [
 		{
+			"name": "Permission",
+			"item": [
+				{
+					"name": "get_permissions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/permission",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"permission"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_permissions_by_id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/permission/d7b561f9-a914-4def-bd09-5ab0beaba530",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"permission",
+								"d7b561f9-a914-4def-bd09-5ab0beaba530"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_permissions",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"tesst\",\r\n    \"status\":true,\r\n    \"role\":{\r\n        \"id_role\": \"8f196591-f2cf-43f9-b328-668209390df5\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/permission",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"permission"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update_permission",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"test-edit\",\r\n    \"view\": false,\r\n    \"create\": false,\r\n    \"update\": false,\r\n    \"delete\": false,\r\n    \"menu\": false,\r\n    \"role\": {\r\n        \"id_role\": \"8f196591-f2cf-43f9-b328-668209390df5\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/permission/c3e02422-1b97-4abd-917e-270100327b77",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"permission",
+								"c3e02422-1b97-4abd-917e-270100327b77"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete_permission",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/permission/c3e02422-1b97-4abd-917e-270100327b77",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"permission",
+								"c3e02422-1b97-4abd-917e-270100327b77"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Product",
 			"item": [
 				{
@@ -19,7 +145,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n  \"name\": \"Toyota Corolla 2020\",\r\n  \"model\": \"Corolla\",\r\n  \"brand\": \"Toyota\",\r\n  \"colors\": \"Rojo, Azul, Blanco\",\r\n  \"liters\": \"2.0\",\r\n  \"km\": \"5000\",\r\n  \"engine\": \"V4\",\r\n  \"description\": \"Sedán compacto con alta eficiencia de combustible.\",\r\n  \"weight\": \"1300kg\",\r\n  \"tires\": \"Michelin\",\r\n  \"purchase_price\": 18000,\r\n  \"sale_price\": 22000,\r\n  \"id_user\": \"d1212mjd12-d2112diopj12d\",\r\n  \"status\": true\r\n}\r\n\r\n",
+									"raw": "{\r\n    \"name\": \"Toyota Corolla 2020\",\r\n    \"model\": \"Corolla\",\r\n    \"brand\": \"Toyota\",\r\n    \"colors\": \"Rojo, Azul, Blanco\",\r\n    \"liters\": \"2.0\",\r\n    \"km\": \"5000\",\r\n    \"engine\": \"V4\",\r\n    \"description\": \"Sedán compacto con alta eficiencia de combustible.\",\r\n    \"weight\": \"1300kg\",\r\n    \"tires\": \"Michelin\",\r\n    \"purchase_price\": 18000,\r\n    \"sale_price\": 22000,\r\n    \"user\": {\r\n        \"id_user\": \"ebf02833-9f04-44b1-9a88-f8bc741da461\"\r\n    },\r\n    \"status\": true\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -48,7 +174,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n  \"name\": \"Toyota Corolla 2021\",\r\n  \"model\": \"Corolla\",\r\n  \"brand\": \"Toyota\",\r\n  \"colors\": \"Negro, Gris, Blanco\",\r\n  \"liters\": \"3.0\",\r\n  \"km\": \"13000\",\r\n  \"engine\": \"V6 Turbo\",\r\n  \"description\": \"Sedán compacto con mejor rendimiento y más seguridad.\",\r\n  \"weight\": \"130kg\",\r\n  \"tires\": \"Bridgestone\",\r\n  \"purchase_price\": 8500,\r\n  \"sale_price\": 2500,\r\n  \"id_user\": \"d1212mjd12-d2112diopj12d\",\r\n  \"status\": true\r\n}\r\n\r\n",
+									"raw": "{\r\n  \"name\": \"Toyota Corolla 2021\",\r\n  \"model\": \"Corolla-edit\",\r\n  \"brand\": \"Toyota-edit\",\r\n  \"colors\": \"Negro, Gris, Blanco-edit\",\r\n  \"liters\": \"2.0\",\r\n  \"km\": \"12000\",\r\n  \"engine\": \"V6 Turbo-edit\",\r\n  \"description\": \"Sedán compacto con mejor rendimiento y más seguridad.-edit\",\r\n  \"weight\": \"130kg-edit\",\r\n  \"tires\": \"Bridgestone-edit\",\r\n  \"purchase_price\": 1500,\r\n  \"sale_price\": 1500,\r\n  \"user\":{\r\n     \"id_user\": \"d1212mjd12-d2112diopj12d\"\r\n  },\r\n  \"status\": true\r\n}\r\n\r\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -56,7 +182,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/api/product/P001",
+									"raw": "http://localhost:3000/api/product/P006",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -65,7 +191,7 @@
 									"path": [
 										"api",
 										"product",
-										"P001"
+										"P006"
 									]
 								}
 							},
@@ -139,6 +265,560 @@
 			]
 		},
 		{
+			"name": "Quotas",
+			"item": [
+				{
+					"name": "get_quotas_sale",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/quotas/0fd97694-ea41-4e06-83f4-c1a65777eb22/sale",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"quotas",
+								"0fd97694-ea41-4e06-83f4-c1a65777eb22",
+								"sale"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_quota_by_id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/quotas/d9cceb6e-dd21-4b5a-af58-0c5cdb2c3708",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"quotas",
+								"d9cceb6e-dd21-4b5a-af58-0c5cdb2c3708"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_quota",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"number_quota\": 2,\r\n    \"price\": 500.00,\r\n    \"type_payment\": \"efectivo\",\r\n    \"date_paid\": \"2025-04-02T15:30:00Z\",\r\n    \"receipt_number\": \"RCPT-12345\",\r\n    \"created_date\": \"2025-04-02T15:00:00Z\",\r\n    \"updated_date\": \"2025-04-02T15:30:00Z\",\r\n    \"status\": true,\r\n    \"sale\": {\r\n        \"id_sale\": \"0fd97694-ea41-4e06-83f4-c1a65777eb22\"\r\n    },\r\n    \"user\": {\r\n        \"id_user\": \"32d4854d-0f62-11f0-ba3b-90e868c79370\"\r\n    }\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/quotas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"quotas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update_quota",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"number_quota\": 3,\r\n    \"price\": 200,\r\n    \"type_payment\": \"efectivo\",\r\n    \"date_paid\": \"2025-04-03T15:30:00.000Z\",\r\n    \"receipt_number\": \"RCPT-123245\",\r\n    \"status\": true,\r\n    \"sale\": {\r\n        \"id_sale\": \"0fd97694-ea41-4e06-83f4-c1a65777eb22\"\r\n    },\r\n    \"user\": {\r\n        \"id_user\": \"32d4854d-0f62-11f0-ba3b-90e868c79370\"\r\n    }\r\n}\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/quotas/7fb48c32-15e9-4c5f-b287-fae4392876f8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"quotas",
+								"7fb48c32-15e9-4c5f-b287-fae4392876f8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete_quota",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/quotas/7fb48c32-15e9-4c5f-b287-fae4392876f8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"quotas",
+								"7fb48c32-15e9-4c5f-b287-fae4392876f8"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Role",
+			"item": [
+				{
+					"name": "get_roles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/role",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"role"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_role_by_id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/role/0c97c733-5c58-4546-8247-b213a1ccefe7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"role",
+								"0c97c733-5c58-4546-8247-b213a1ccefe7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_role",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"test - 11\",\r\n    \"fl_dashboard\": true,\r\n    \"status\": true,\r\n    \"user\": {\r\n        \"id_user\": \"ebf02833-9f04-44b1-9a88-f8bc741da461\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/role",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"role"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update_role",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"test edit\",\r\n    \"fl_dashboard\": true,\r\n    \"status\": true,\r\n    \"user\": {\r\n        \"id_user\": \"d1212mjd12-d2112diopj12d\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/role/19d30b87-296e-4c85-828d-350255f90db0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"role",
+								"19d30b87-296e-4c85-828d-350255f90db0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete_role",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/role/0c97c733-5c58-4546-8247-b213a1ccefe7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"role",
+								"0c97c733-5c58-4546-8247-b213a1ccefe7"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Sale Detail",
+			"item": [
+				{
+					"name": "get_details",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/saledetail",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"saledetail"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_detail",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/saledetail/a1a6a34c-13b5-47a3-83d2-c796a3ccc035",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"saledetail",
+								"a1a6a34c-13b5-47a3-83d2-c796a3ccc035"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_details",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"quantity\": 4,\r\n    \"price\": 1500,\r\n    \"discount\": \"30\",\r\n    \"sub_total\": 5000,\r\n    \"total\": 5000,\r\n    \"receipt_number\": \"d142\",\r\n    \"sale\": {\r\n        \"id_sale\": \"ef9ab62c-c385-4f96-bcca-72370d8988fb\"\r\n    },\r\n    \"product\": {\r\n        \"id_product\": \"cdc1ca63-5517-43fc-aaeb-3b44e86d03db\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/saledetail",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"saledetail"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update_details",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"quantity\": 1,\r\n    \"price\": 1200,\r\n    \"discount\": \"10\",\r\n    \"sub_total\": 1000,\r\n    \"total\": 1000,\r\n    \"receipt_number\": \"d142\",\r\n    \"sale\": {\r\n        \"id_sale\": \"ef9ab62c-c385-4f96-bcca-72370d8988fb\"\r\n    },\r\n    \"product\": {\r\n        \"id_product\": \"cdc1ca63-5517-43fc-aaeb-3b44e86d03db\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/saledetail/286eb244-af3a-4c42-812c-3e4b036f6767",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"saledetail",
+								"286eb244-af3a-4c42-812c-3e4b036f6767"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete_details",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/sale/0fd97694-ea41-4e06-83f4-c1a65777eb22",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"sale",
+								"0fd97694-ea41-4e06-83f4-c1a65777eb22"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Sale",
+			"item": [
+				{
+					"name": "get_sales",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/sale",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"sale"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_sale",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/sale/0fd97694-ea41-4e06-83f4-c1a65777eb22",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"sale",
+								"0fd97694-ea41-4e06-83f4-c1a65777eb22"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_detail",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"sale_date\": \"2024-04-01T12:00:00.000Z\",\r\n    \"total\": 1400.75,\r\n    \"quotas\": 1,\r\n    \"type_document\": \"Factura\",\r\n    \"code_document\": \"F123456\",\r\n    \"sale_status\": \"Pendiente\",\r\n    \"customer\": {\r\n        \"id_customer\": \"5b3aa4bc-0f62-11f0-ba3b-90e868c79370\"\r\n    },\r\n    \"user\": {\r\n        \"id_user\": \"d1212mjd12-d2112diopj12d\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/sale",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"sale"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update_detail",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"sale_date\": \"2024-04-01T12:00:00.000Z\",\r\n    \"total\": 1230.75,\r\n    \"quotas\": 5,\r\n    \"type_document\": \"Factura- dedit\",\r\n    \"code_document\": \"F123456edit\",\r\n    \"sale_status\": \"Pendienteedit\",\r\n    \"customer\": {\r\n        \"id_customer\": \"\"\r\n    },\r\n    \"user\": {\r\n        \"id_user\": \"\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/sale/0fd97694-ea41-4e06-83f4-c1a65777eb22",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"sale",
+								"0fd97694-ea41-4e06-83f4-c1a65777eb22"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete_detail",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/sale/0fd97694-ea41-4e06-83f4-c1a65777eb22",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"sale",
+								"0fd97694-ea41-4e06-83f4-c1a65777eb22"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Ubigeo",
+			"item": [
+				{
+					"name": "get_ubigeo_id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/ubigeo/150106",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"ubigeo",
+								"150106"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_ubigeo_prompt",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/ubigeo/barranca/places",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"ubigeo",
+								"barranca",
+								"places"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "User",
 			"item": [
 				{
@@ -189,7 +869,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"asus\",\r\n    \"surnames\": \"asus\",\r\n    \"dni\": \"98646727\",\r\n    \"user_name\":  null,\r\n    \"password\": null,\r\n    \"email\": null,\r\n    \"img_profile\": null,\r\n    \"id_role\": null,\r\n    \"updated_at\": null\r\n}",
+							"raw": "{\r\n    \"name\": \"admin22\",\r\n    \"surnames\": \"admi212n\",\r\n    \"dni\": \"21213\",\r\n    \"user_name\":  null,\r\n    \"password\": null,\r\n    \"email\": null,\r\n    \"img_profile\": null,\r\n    \"id_role\": null,\r\n    \"updated_at\": null\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -218,7 +898,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"asus-edit\",\r\n    \"surnames\": \"asus-edit\",\r\n    \"dni\": \"98646722\",\r\n    \"email\": \"luis.xd@gmail.com\",\r\n    \"img_profile\": \"daejlejadla.com\"\r\n}",
+							"raw": "{\r\n    \"name\": \"asus-edit\",\r\n    \"surnames\": \"asus-edit 2\",\r\n    \"dni\": \"986462722\",\r\n    \"email\": \"luis.xd@gmail.com\",\r\n    \"img_profile\": \"daejlejadla.com\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -226,7 +906,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/user/a560f80a-37c6-4dfc-8bcb-b149a5cf140a",
+							"raw": "http://localhost:3000/api/user/7cfefb7b-f1df-49e4-84c9-556eedc9b50d",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -235,7 +915,7 @@
 							"path": [
 								"api",
 								"user",
-								"a560f80a-37c6-4dfc-8bcb-b149a5cf140a"
+								"7cfefb7b-f1df-49e4-84c9-556eedc9b50d"
 							]
 						}
 					},

@@ -19,11 +19,11 @@ export class RoleEntity implements RoleIF {
   @Column({ name: "fl_dashboard" })
   fl_dashboard: boolean;
 
-  @Column({ name: "created_at" })
-  created_at: Date;
+  @Column({ name: "created_date" })
+  created_date: Date;
 
-  @Column({ name: "updated_at" })
-  updated_at?: Date;
+  @Column({ name: "updated_date", nullable: true })
+  updated_date?: Date;
 
   @Column({ name: "status", default: true })
   status?: boolean;
@@ -40,8 +40,8 @@ export class RoleEntity implements RoleIF {
     this.id_role = params.id_role;
     this.name = params.name;
     this.fl_dashboard = params.fl_dashboard;
-    this.created_at = params.created_at;
-    this.updated_at = params.updated_at;
+    this.created_date = params.created_date;
+    this.updated_date = params.updated_date;
     this.status = params.status;
     this.id_user = params.user.id_user;
   }

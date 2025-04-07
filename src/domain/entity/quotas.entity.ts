@@ -3,7 +3,7 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
-  PrimaryGeneratedColumn
+  PrimaryGeneratedColumn,
 } from "typeorm";
 import { QuotasIF } from "../interface/quotas.interface";
 import { SaleEntity } from "./sale.entity";
@@ -32,7 +32,7 @@ export class QuotasEntity implements QuotasIF {
   @Column({ name: "created_date" })
   created_date: Date;
 
-  @Column({ name: "updated_date" })
+  @Column({ name: "updated_date", nullable: true })
   updated_date?: Date;
 
   @Column({ name: "status", default: true })

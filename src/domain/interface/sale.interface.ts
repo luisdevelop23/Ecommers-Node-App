@@ -9,8 +9,8 @@ export interface SaleIF {
   type_document: string;
   code_document: string;
   sale_status: string;
-  created_at: Date;
-  updated_at?: Date;
+  created_date: Date;
+  updated_date?: Date;
   status?: boolean;
   customer: customersIF;
   user: UserIF;

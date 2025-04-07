@@ -48,11 +48,11 @@ export class CustomerEntity implements customersIF {
   @Column({ name: "state" })
   state?: boolean;
 
-  @Column({ name: "created_at" })
-  created_at: Date;
+  @Column({ name: "created_date" })
+  created_date: Date;
 
-  @Column({ name: "updated_at" })
-  updated_at?: Date;
+  @Column({ name: "updated_date", nullable: true })
+  updated_date?: Date;
 
   @Column({ name: "status", default: true })
   status?: boolean;

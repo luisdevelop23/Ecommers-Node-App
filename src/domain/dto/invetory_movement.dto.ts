@@ -1,3 +1,6 @@
+import { ProductIF } from "../interface/product.interface";
+import { UserIF } from "../interface/user.interface";
+
 export class InventoryMovementDto {
   id_inventory_movement: string;
   movement_type: string;
@@ -8,8 +11,8 @@ export class InventoryMovementDto {
   updated_date?: Date;
   status?: boolean;
   description?: string;
-  id_product: string;
-  id_user: string;
+  product: ProductIF;
+  user: UserIF;
 
   constructor(props: { [key: string]: any }) {
     this.id_inventory_movement = props.id_inventory_movement;
@@ -21,8 +24,8 @@ export class InventoryMovementDto {
     // this.updated_date = props.updated_date;
     this.status = props.status;
     this.description = props.description;
-    this.id_product = props.id_product;
-    this.id_user = props.id_user;
+    this.product = { id_product: props.product.id_product } as ProductIF;
+    this.user = { id_user: props.user.id_user } as UserIF;
   }
 
   static create(props: { [key: string]: any }) {
@@ -31,8 +34,8 @@ export class InventoryMovementDto {
       "quantity",
       "reference",
       "movement_date",
-      "id_product",
-      "id_user",
+      "product",
+      "user",
     ];
     for (const field of requiredFields) {
       if (!props[field]) {
@@ -43,13 +46,29 @@ export class InventoryMovementDto {
       movement_type: String(props.movement_type),
       quantity: Number(props.quantity),
       reference: String(props.reference),
-      movement_date:
-        props.movement_date && !isNaN(new Date(props.movement_date).getTime())
-          ? new Date(props.movement_date)
-          : null,
-      id_product: String(props.id_product),
-      id_user: String(props.id_user),
+      product: { id_product: String(props.product.id_product) } as ProductIF,
+      user: { id_user: String(props.user.id_user) } as UserIF,
     };
-    return [true, "", new InventoryMovementDto(valitedProps)];
+    return [true, "", new InventoryMovementDto(props)];
+  }
+  static update(props: { [key: string]: any }) {
+    const requiredFields = [
+      "movement_type",
+      "quantity",
+      "reference",
+    ];
+    for (const field of requiredFields) {
+      if (!props[field]) {
+        return [false, `El campo ${field} es requerido`, null];
+      }
+    }
+    const valitedProps = {
+      movement_type: String(props.movement_type),
+      quantity: Number(props.quantity),
+      reference: String(props.reference),
+      product: { id_product: String(props.product.id_product) } as ProductIF,
+      user: { id_user: String(props.user.id_user) } as UserIF,
+    };
+    return [true, "", new InventoryMovementDto(props)];
   }
 }

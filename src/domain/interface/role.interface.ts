@@ -4,8 +4,8 @@ export interface RoleIF {
   id_role: string;
   name: string;
   fl_dashboard: boolean;
-  created_at: Date;
-  updated_at?: Date;
+  created_date: Date;
+  updated_date?: Date;
   status?: boolean;
   user: UserIF;
 }

@@ -7,10 +7,14 @@ import { SaleDetailRoutes } from "./sale_detail/sale_detail.routes";
 import { QuotasRoutes } from "./quotas/quotas.routes";
 import { RoleRoutes } from "./role/role.routes";
 import { PermissionRoutes } from "./permission/permission.routes";
+import { InventoryRoutes } from "./inventory/inventory.routes";
+import { InventoryMovementRoutes } from "./inventory_movement/inventory_movement.routes";
 
 export class AppRoutes {
   static get routes(): Router {
     const router = Router();
+    router.use("/api/inventory", InventoryRoutes.routes);
+    router.use("/api/movement", InventoryMovementRoutes.routes);
     router.use("/api/permission", PermissionRoutes.routes);
     router.use("/api/product", ProductRoutes.routes);
     router.use("/api/quotas", QuotasRoutes.routes);

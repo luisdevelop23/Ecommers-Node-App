@@ -40,11 +40,11 @@ export class AplicationEntity implements AplicationIF{
     @Column({ name: "description" })
     description?: string ;
 
-    @Column({ name: "created_at" })
-    created_at: Date;
+    @Column({ name: "created_date" })
+    created_date: Date;
 
-    @Column({ name: "updated_at" })
-    updated_at?: Date ;
+    @Column({ name: "updated_date", nullable: true })
+    updated_date?: Date ;
 
     @Column({ name: "status", default: true })
     status?: boolean ;
@@ -63,8 +63,8 @@ export class AplicationEntity implements AplicationIF{
         this.brand = params.brand;
         this.department = params.department;
         this.description = params.description;
-        this.created_at = params.created_at;
-        this.updated_at = params.updated_at;
+        this.created_date = params.created_date;
+        this.updated_date = params.updated_date;
         this.status = params.status;
     }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
 

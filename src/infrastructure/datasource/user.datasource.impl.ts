@@ -17,7 +17,7 @@ export class UserDataSourceImpl implements UserDataSource {
         "email",
         "status",
       ],
-      order: { created_at: "DESC" },
+      order: { created_date: "DESC" },
     });
   }
   async getUser(id: string): Promise<UserEntity> {
@@ -41,7 +41,9 @@ export class UserDataSourceImpl implements UserDataSource {
     }
     Object.assign(userToUpdate, {
       ...user,
-      updated_at: new Date(),
+      id_user: userToUpdate.id_user,
+      created_date: userToUpdate.created_date,
+      updated_date: new Date(),
     });
     return this.repository.save(userToUpdate);
   }

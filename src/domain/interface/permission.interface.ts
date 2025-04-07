@@ -6,7 +6,7 @@ export class PermissionIF {
   update: boolean;
   delete: boolean;
   menu: boolean;
-  created_at: Date;
-  updated_at?: Date;
+  created_date: Date;
+  updated_date?: Date;
   status: boolean;
 }

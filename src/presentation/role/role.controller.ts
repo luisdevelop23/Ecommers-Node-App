@@ -67,19 +67,22 @@ export class RoleController {
     next: NextFunction
   ) => {
     try {
-      const id = req.params.id;
-      const [status, message, data] = RoleDto.create(req.body);
-      if(!status){
-        res.status(400).json({ message, result: false });
+      const [status, message, data] = RoleDto.update(req.body);
+      if (!status) {
+        res.status(400).json({ message, data: false, result: false });
         return;
+      } else {
+        const id = req.params.id;
+        const role = await this.repository.updateRole(id, data as RoleDto);
+        res.status(200).json({
+          message: "role creado correctamente",
+          data: role,
+          result: true,
+        });
       }
-      const role = await this.repository.updateRole(id, data as RoleDto);
-      res.status(200).json({
-        message: "role creado correctamente",
-        data: role,
-        result: true,
-      });
-    } catch (error) {}
+    } catch (error) {
+      next(error);
+    }
   };
   public deleteRole = async (
     req: Request,
@@ -91,7 +94,7 @@ export class RoleController {
       const role = await this.repository.deleteRole(id);
       res.status(200).json({
         message: "role Eliminado correctamente",
-        data: { id: id , status: role.status },
+        data: { id: id, status: role.status },
         result: true,
       });
     } catch (error) {

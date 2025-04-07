@@ -13,8 +13,8 @@ export interface customersIF {
   limit_credit?: number;
   balance?: number;
   state?: boolean;
-  created_at: Date;
-  updated_at?: Date;
+  created_date: Date;
+  updated_date?: Date;
   user: UserIF;
   status?: boolean;
 }

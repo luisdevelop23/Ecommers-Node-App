@@ -1,6 +1,7 @@
 import { RoleDataSource } from "../../domain/datasource/role.datasource";
 import { RoleDto } from "../../domain/dto/role.dto";
 import { RoleEntity } from "../../domain/entity/role.entity";
+import { generateCode } from "../../helpers/generate_code";
 import { TypeOrmCustomize } from "../../plugins/type-orm/type-orm";
 
 export class RoleDatasourceImpl implements RoleDataSource {
@@ -22,22 +23,25 @@ export class RoleDatasourceImpl implements RoleDataSource {
     return role;
   }
   async createRole(role: RoleDto): Promise<RoleEntity> {
-    const newRole = await this.repository.create(role);
+    console.log("desde impl role",role)
+    const newRole = await this.repository.create({
+      ...role,
+      id_role: await generateCode(this.repository, "R", "id_role"),
+    });
     return this.repository.save(newRole);
   }
   async updateRole(id: string, role: RoleDto): Promise<RoleEntity> {
     const existingRole = await this.repository.findOne({
         where: { id_role: id },
     });
-
     if (!existingRole) {
         throw new Error("Role no encontrado");
     }
-    // ? asignacion de datos
-    existingRole.name = role.name || existingRole.name;
-    existingRole.fl_dashboard = role.fl_dashboard !== undefined ? role.fl_dashboard : existingRole.fl_dashboard;
-    existingRole.status = role.status !== undefined ? role.status : existingRole.status;
-    existingRole.updated_at = new Date();
+   Object.assign(existingRole, {
+       ...role,
+       id_role: existingRole.id_role,
+       updated_date: new Date(),
+   });
 
     return this.repository.save(existingRole);
 }

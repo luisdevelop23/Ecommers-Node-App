@@ -11,8 +11,8 @@ export class CustomerDto {
   limit_credit?: number;
   balance?: number;
   state?: boolean;
-  created_at: Date;
-  updated_at?: Date;
+  created_date: Date;
+  updated_date?: Date;
   id_user: string;
   status?: boolean;
 
@@ -29,8 +29,8 @@ export class CustomerDto {
     this.limit_credit = props.limit_credit;
     this.balance = props.balance;
     this.state = props.state;
-    this.created_at = new Date();
-    // this.updated_at = props.updated_at;
+    this.created_date = new Date();
+    // this.updated_date = props.updated_date;
     this.id_user = props.id_user;
     this.status = props.status;
   }

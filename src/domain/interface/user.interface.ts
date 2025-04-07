@@ -8,7 +8,7 @@ export interface UserIF {
   email?: string;
   img_profile?: string;
   id_role?: string;
-  created_at: Date;
-  updated_at?: Date;
+  created_date: Date;
+  updated_date?: Date;
   status?: boolean;
 }

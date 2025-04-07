@@ -32,7 +32,11 @@ export class QuotasDataSourceImpl implements QuotasDataSource {
         if (!quotasToUpdate) {
             throw new Error("Quota no encontrado");
         }
-        Object.assign(quotasToUpdate, quotas)
+        Object.assign(quotasToUpdate, {
+            ...quotas,
+            id_quotas: quotasToUpdate.id_quotas,
+            updated_date: new Date(),
+        })
         return this.repository.save(quotasToUpdate)
     }
     async deleteQuotas(id: string): Promise<QuotasEntity> {

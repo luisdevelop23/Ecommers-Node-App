@@ -33,7 +33,8 @@ export class ProductDataSourceImpl implements ProductDataSource {
     console.log("productooooooo", product);
     const newProduct = this.repository.create({
       ...product,
-      cod_product: await generateCode(this.repository, "P", "cod_product"),
+      id_product: await generateCode(this.repository, "P", "id_product"),
+      cod_product: await generateCode(this.repository, "CP", "cod_product"),
     });
 
     return this.repository.save(newProduct);
@@ -54,7 +55,7 @@ export class ProductDataSourceImpl implements ProductDataSource {
     Object.assign(existingProduct, {
       ...product,
       id_product: existingProduct.id_product,
-      updated_at: new Date(),
+      updated_date: new Date(),
     });
 
     return this.repository.save(existingProduct);

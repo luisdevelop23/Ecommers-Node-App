@@ -29,8 +29,8 @@ CREATE TABLE users (
     surnames VARCHAR(255),
     email VARCHAR(100) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
-    created_at TIMESTAMPTZ DEFAULT NOW(),
-    updated_at TIMESTAMPTZ DEFAULT NOW()
+    created_date TIMESTAMPTZ DEFAULT NOW(),
+    updated_date TIMESTAMPTZ DEFAULT NOW()
 );
 
 
@@ -78,7 +78,7 @@ CREATE TABLE FavoriteProduct (
   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(), -- Genera automáticamente un UUID único
   product_id VARCHAR(20) NOT NULL REFERENCES products(asin) ON DELETE CASCADE,
   cant INT NOT NULL,
-  created_at TIMESTAMPTZ DEFAULT NOW(),
+  created_date TIMESTAMPTZ DEFAULT NOW(),
   user_id UUID REFERENCES auth.users(id) ON DELETE SET NULL
 );
 
@@ -268,3 +268,7 @@ ORDER BY RANDOM()
  from favoriteproduct f
  inner join products p on p.asin = f.product_id
 
+INSERT INTO customer (id_customer, type_customer, names, surnames, dni, email, phone, adress, id_ubigeo, limit_credit, balance, state, created_date,  status, id_user)
+VALUES
+('7f5a0a03-00d7-40e0-99a8-65557c659a98', 'Persona', 'Juan', 'Perez', '12345678', 'juan@example.com', '987654321', 'Av. Siempre Viva 742', '150101', 5000, 1200, TRUE, now(),TRUE, 'b353870c-3104-4d49-a48f-23c0e24791a0'),
+('8a2b3c4d-1234-56ab-890c-efgh567i9jkl', 'Empresa', 'Tech Solutions', '', '87654321', 'contact@techsolutions.com', '987654322', 'Calle Falsa 123', '150102', 10000, 8000, TRUE, now(), TRUE, 'b353870c-3104-4d49-a48f-23c0e24791a0');

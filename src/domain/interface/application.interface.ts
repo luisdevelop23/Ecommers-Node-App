@@ -11,7 +11,7 @@ export interface AplicationIF {
   brand?: string;
   department?: boolean;
   description?: string;
-  created_at: Date;
-  updated_at?: Date;
+  created_date: Date;
+  updated_date?: Date;
   status?: boolean;
 }

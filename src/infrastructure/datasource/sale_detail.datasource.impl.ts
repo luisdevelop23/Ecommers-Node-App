@@ -26,23 +26,18 @@ export class SaleDetailDataSourceImpl implements SaleDetailDataSource {
         id: string,
         saleDetail: SaleDetailDto
     ): Promise<SaleDetailEntity> {
-    // Buscar el detalle de la venta
     const saleDetailToUpdate = await this.repository.findOneBy({ id_sale_detail: id });
     if (!saleDetailToUpdate) {
         throw new Error("detalle venta no encontrado");
     }
 
-    // Asignar los valores nuevos, manejando las relaciones correctamente
     Object.assign(saleDetailToUpdate, {
-        quantity: saleDetail.quantity,
-        price: saleDetail.price,
-        discount: saleDetail.discount,
-        sub_total: saleDetail.sub_total,
-        total: saleDetail.total,
-        status: saleDetail.status,
+        ...saleDetail,
+        id_sale_detail: saleDetailToUpdate.id_sale_detail,
+        created_date: saleDetailToUpdate.created_date,
+        updated_date: new Date(),
     });
 
-    // Guardar el detalle de venta actualizado
     return this.repository.save(saleDetailToUpdate);
     }
     async deleteSaleDetail(id: string): Promise<SaleDetailEntity> {

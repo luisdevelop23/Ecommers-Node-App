@@ -7,17 +7,19 @@ export class SaleDto {
   total: number;
   quotas: number;
   type_document: string;
-  code_document: string;
+  code_document?: string;
   sale_status: string;
-  created_at: Date;
-  updated_at?: Date;
+  created_date: Date;
+  updated_date?: Date;
   status?: boolean;
   customer?: customersIF;
   user?: UserIF;
 
   constructor(props: { [key: string]: any }) {
     this.id_sale = props.id_sale;
-    this.sale_date = props.sale_date;
+    this.sale_date = props.sale_date
+      ? new Date(props.sale_date)
+      : new Date();
     this.total = props.total;
     this.quotas = props.quotas;
     this.type_document = props.type_document;
@@ -26,16 +28,14 @@ export class SaleDto {
     this.status = props.status;
     this.customer = { id_customer: props.customer.id_customer } as customersIF;
     this.user = { id_user: props.user.id_user } as UserIF;
-    this.created_at = new Date();
+    this.created_date = new Date();
   }
 
   static create(props: { [key: string]: any }) {
     const requiredFields = [
-      "sale_date",
       "total",
       "quotas",
       "type_document",
-      "code_document",
       "sale_status",
       "customer",
       "user",
