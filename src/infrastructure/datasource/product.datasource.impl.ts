@@ -6,18 +6,51 @@ import { TypeOrmCustomize } from "../../plugins/type-orm/type-orm";
 
 export class ProductDataSourceImpl implements ProductDataSource {
   private repository = TypeOrmCustomize.getRepository(ProductEntity);
-  async getProducts(): Promise<ProductEntity[]> {
-    return await this.repository.find({
+  async getProducts(page: number, pageSize: number): Promise<{ products: ProductEntity[], pages: number }> {
+    const products = await this.repository.find({
       where: { status: true },
       order: { created_date: "DESC" },
+      relations: ["user"],
+      select: {
+        id_product: true,
+        cod_product: true,
+        name: true,
+        model: true,
+        brand: true,
+        colors: true,
+        liters: true,
+        km: true,
+        engine: true,
+        description: true,
+        weight: true,
+        tires: true,
+        purchase_price: true,
+        sale_price: true,
+        created_date: true,
+        user: {
+          name: true,
+        },
+        status: true,
+      },
+      skip: (page - 1) * pageSize, 
+      take: pageSize, 
     });
+
+    const count = await this.repository.count({
+      where: { status: true },
+    });
+
+    return {
+      products,
+      pages: Math.ceil(count / pageSize),
+    };
   }
 
   async getProduct(cod_product: string): Promise<ProductEntity> {
     const product = await this.repository.findOne({
       where: {
         cod_product,
-        // status: true,
+        status: true,
       },
     });
 
@@ -27,7 +60,6 @@ export class ProductDataSourceImpl implements ProductDataSource {
 
     return product;
   }
-
 
   async createProduct(product: ProductDto): Promise<ProductEntity> {
     console.log("productooooooo", product);

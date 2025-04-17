@@ -5,8 +5,8 @@ import { ProductRepository } from "../../domain/repository/product.repository";
 
 export class ProductRepositoryImpl implements ProductRepository {
   constructor(private readonly datasource: ProductDataSource) { }
-  async getProducts(): Promise<ProductEntity[]> {
-    return await this.datasource.getProducts();
+  async getProducts(page: number, pageSize: number): Promise<{ products: ProductEntity[], pages: number }> {
+    return await this.datasource.getProducts(page, pageSize);
   }
   async getProduct(cod_product: string): Promise<ProductEntity> {
     return await this.datasource.getProduct(cod_product);

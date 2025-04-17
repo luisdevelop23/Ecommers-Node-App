@@ -11,7 +11,10 @@ export class ProductController {
     next: NextFunction
   ): Promise<void> => {
     try {
-      const products = await this.repository.getProducts();
+      const page = parseInt(req.query.page as string) || 1;
+      const pageSize = parseInt(req.query.pageSize as string) || 10; 
+
+      const { products, pages }= await this.repository.getProducts(page, pageSize);
       if (products.length === 0) {
         res.status(200).json({
           message: "No se encontraron productos",
@@ -22,6 +25,7 @@ export class ProductController {
       res.status(200).json({
         message: "Productos obtenidos",
         data: products,
+        pages,
         result: true,
       });
     } catch (error) {
