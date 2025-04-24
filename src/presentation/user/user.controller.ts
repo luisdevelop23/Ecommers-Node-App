@@ -21,7 +21,7 @@ export class UserController {
       }
       res.status(200).json({
         message: "Usuarios obtenidos",
-        data: users,
+        data: users, 
         result: true,
       });
     } catch (error) {

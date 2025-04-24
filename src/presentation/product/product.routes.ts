@@ -9,6 +9,7 @@ export class ProductRoutes {
     const productDataSource = new ProductDataSourceImpl();
     const ProductRepository = new ProductRepositoryImpl(productDataSource);
     const productController = new ProductController(ProductRepository);
+    router.get("/newcod", productController.getNewCod);
     router.get("/:id", productController.getProduct);
     router.get("/", productController.getProducts);
     router.post("/", productController.createProduct);

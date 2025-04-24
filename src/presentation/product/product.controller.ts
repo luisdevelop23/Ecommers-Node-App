@@ -4,6 +4,29 @@ import { ProductDto } from "../../domain/dto/product.dto";
 
 export class ProductController {
   constructor(private readonly repository: ProductRepository) {}
+  public getNewCod = async (
+      _: Request,
+      res: Response,
+      next: NextFunction
+  ): Promise<void> => {
+    try {
+      const newcod = await this.repository.codNew();
+      if (newcod == null) {
+        res.status(200).json({
+          message: "codigo no obtenido",
+          data: null,
+          result: false,
+        });
+      }
+      res.status(200).json({
+        message: "Nuevo codigo",
+        data: newcod,
+        result: true,
+      });
+    } catch (error) {
+      next(error);
+    }
+  };
 
   public getProducts = async (
     req: Request,
@@ -41,11 +64,19 @@ export class ProductController {
     try {
       console.log(typeof req.params.id);
       const product = await this.repository.getProduct(req.params.id);
-      res.status(200).json({
-        message: "Producto obtenido",
-        data: product,
-        result: true,
-      });
+      if(product){
+        res.status(200).json({
+          message: "Producto obtenido",
+          data: product,
+          result: true,
+        });
+      }else {
+        res.status(400).json({
+          message: "Producto no encontrado",
+          data: null,
+          result: false,
+        });
+      }
     } catch (error) {
       next(error);
     }
@@ -59,7 +90,7 @@ export class ProductController {
     try {
       const [status, message, data] = ProductDto.create(req.body);
       if (!status) {
-        res.status(200).json({
+        res.status(400).json({
           message: message,
           data: null,
           result: false,
@@ -83,7 +114,7 @@ export class ProductController {
     next: NextFunction
   ): Promise<void> => {
     try {
-      const [status, message, data] = ProductDto.create(req.body);
+      const [status, message, data] = ProductDto.update(req.body);
       if (!status) {
         res.status(200).json({
           message: message,
@@ -117,6 +148,7 @@ export class ProductController {
       const product = await this.repository.deleteProduct(idDelete);
       res.status(200).json({
         messega: "Producto Eliminado Correctamente",
+        product: {name:product.name},
         result: true,
       });
     } catch (error) {

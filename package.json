@@ -1,5 +1,5 @@
 {
-  "name": "market-node",
+  "name": "node-api",
   "version": "1.0.0",
   "description": "# npm i",
   "main": "index.js",
@@ -15,16 +15,21 @@
   "dependencies": {
     "@types/mysql": "^2.15.26",
     "@types/nodemon": "^1.19.6",
+    "bcryptjs": "^3.0.2",
     "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
     "env-var": "^7.5.0",
     "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
     "market-node": "file:",
     "mysql2": "^3.14.0",
+    "node-api": "file:",
     "pg": "^8.14.1",
     "typeorm": "^0.3.21"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",
+    "@types/jsonwebtoken": "^9.0.9",
     "clear": "^0.1.0",
     "nodemon": "^3.1.9",
     "ts-node": "^10.9.2",
