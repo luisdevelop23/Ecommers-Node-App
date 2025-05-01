@@ -9,10 +9,17 @@ import { RoleRoutes } from "./role/role.routes";
 import { PermissionRoutes } from "./permission/permission.routes";
 import { InventoryRoutes } from "./inventory/inventory.routes";
 import { InventoryMovementRoutes } from "./inventory_movement/inventory_movement.routes";
+import { AuthRoutes } from "./auth/auth.routes";
+import { authenticate } from "../middleware/authMiddleware";
 
 export class AppRoutes {
   static get routes(): Router {
     const router = Router();
+    // ? rutas publicas
+    router.use("/api/auth", AuthRoutes.Routes);
+
+    // ? aplicamos el middlewere de autenticacion a las rutas protegidas
+    router.use(authenticate);
     router.use("/api/inventory", InventoryRoutes.routes);
     router.use("/api/movement", InventoryMovementRoutes.routes);
     router.use("/api/permission", PermissionRoutes.routes);

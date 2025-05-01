@@ -7,9 +7,7 @@ export const envs = {
   PASSWORD: get("PASSWORD").asString(),
   DATABASE: get("DATABASE").asString(),
   HOST: get("HOST").asString(),
-  SUPABASE_URL: get("SUPABASE_URL").asString(),
-  SUPABASE_KEY: get("SUPABASE_KEY").asString(),
-  TOKEN_API_PERU: get("TOKEN_APIS_PERU").asString(),
-  FRONT_ROUTE: get("FRONT_ROUTE").asString(),
-  TOKEN_API_PERUDEV: get("TOKEN_APIS_PERUDEV").asString(),
+  JWT_SECRET: get("JWT_SECRET").asString(),
+  JWT_EXPIRES_IN: get("JWT_EXPIRES_IN").asString(),
+  NODE_ENV: get("NODE_ENV").asString(),
 };

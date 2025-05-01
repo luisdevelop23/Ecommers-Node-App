@@ -1,18 +1,32 @@
 import { Request, Response, NextFunction } from "express";
-import { JwtService } from "../plugins/jwt/jwt";
+import jwt from "jsonwebtoken";
+import { envs } from "../plugins/env-var/env";
 
-export const authMiddleware = (req: Request, res: Response, next: NextFunction) => {
-  const token = req.headers["authorization"]?.split(" ")[1];  // Esperamos el token en el header "Authorization: Bearer <token>"
+export const authenticate = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const token = req.cookies.access_token;
 
   if (!token) {
-    return res.status(403).json({ message: "Acceso denegado. No se ha proporcionado un token." });
+     res.status(401).json({
+      message: "No se encuentra el token, por favor inicia sesión.",
+      result: false,
+    });
+    return
   }
-
   try {
-    const decoded = JwtService.verifyToken(token);  // Verificamos el token
-    req.user = decoded;  // Guardamos el payload del JWT en la solicitud
-    next();  // Continuamos con la ejecución de la ruta
-  } catch (error) {
-    return res.status(401).json({ message: "Token no válido o expirado." });
+    
+    const decoded = jwt.verify(token, envs.JWT_SECRET as string);
+  
+    next();
+    return
+  } catch (err) {
+     res.status(401).json({
+      message: "Token inválido o expirado.",
+      result: false,
+    });
+    return
   }
 };

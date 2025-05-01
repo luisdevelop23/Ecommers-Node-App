@@ -2,9 +2,11 @@ import express, { NextFunction, Request, Response } from "express";
 import cors from "cors";
 import { AppRoutes } from "./app.routes";
 import { TypeOrmCustomize } from "../plugins/type-orm/type-orm";
+import cookieParser from "cookie-parser"
 export class Server {
   private app = express();
   port: number = 3000;
+  
   private configurationMiddlewares() {
     const corsOptions = {
       origin: "*",
@@ -13,6 +15,7 @@ export class Server {
     };
     this.app.use(cors(corsOptions));
     this.app.use(express.json());
+    this.app.use(cookieParser())
     this.app.use(express.urlencoded({ extended: true }));
   }
 

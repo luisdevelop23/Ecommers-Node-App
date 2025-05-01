@@ -16,16 +16,16 @@ export class UserEntity implements UserIF {
   @Column({ name: "surnames" })
   surnames: string;
 
-  @Column({ name: "dni" })
+  @Column({ name: "dni" , unique: true})
   dni: string;
 
-  @Column({ name: "user_name", nullable: true, default: null })
+  @Column({ name: "user_name", nullable: true, default: null, unique: true })
   user_name?: string;
 
   @Column({ name: "password", nullable: true, default: null })
   password?: string;
 
-  @Column({ name: "email", nullable: true, default: null })
+  @Column({ name: "email", nullable: true, default: null, unique: true })
   email?: string;
 
   @Column({ name: "img_profile", nullable: true, default: null })

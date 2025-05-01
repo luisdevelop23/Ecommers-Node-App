@@ -36,6 +36,7 @@ export class UserController {
   ): Promise<void> => {
     try {
       const user = await this.repository.getUser(req.params.id);
+      console.log(user)
       res.status(200).json({
         message: "Usuario obtenido",
         data: user,
@@ -63,7 +64,7 @@ export class UserController {
         const user = await this.repository.createUser(data as UserDto);
         res.status(200).json({
           message: "Usuario creado",
-          data: user,
+          data: {id: user.id_user,name: user.name, email: user.email},
           result: true,
         });
       }
@@ -90,7 +91,7 @@ export class UserController {
         const user = await this.repository.updateUser(id, data as UserDto);
         res.status(200).json({
           message: "Usuario actualizado",
-          data: user,
+          data: {id: user.id_user},
           result: true,
         });
       }
@@ -108,7 +109,7 @@ export class UserController {
       const user = await this.repository.deleteUser(req.params.id);
       res.status(200).json({
         message: "Usuario eliminado",
-        data: user,
+        data: {id: user.id_user},
         result: true,
       });
     } catch (error) {
