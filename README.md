@@ -53,5 +53,5 @@ Start the server
 
 ## Screenshots
 
-![App Screenshot](https://drive.google.com/file/d/1jXPx6qW6rnflauxW2sQz-s3_NnCXHeXp/view?usp=sharing)
+![App Screenshot](https://drive.google.com/uc?export=view&id=1jXPx6qW6rnflauxW2sQz-s3_NnCXHeXp)
 
