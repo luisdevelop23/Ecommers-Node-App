@@ -11,6 +11,7 @@ export class UserRoutes {
     const UserRepository = new UserRepositoryImpl(userDataSource);
     const userController = new UserController(UserRepository);
     router.use(logEndpointWithStatus);
+    router.use(logEndpointWithStatus);
     router.get("/:id", userController.getUser);
     router.get("/", userController.getUsers);
     router.post("/", userController.createUser);

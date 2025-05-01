@@ -2,6 +2,7 @@ import { Router } from "express";
 import { SaleDataSourceImpl } from "../../infrastructure/datasource/sale.datasource.impl";
 import { SaleRepositoryImpl } from "../../infrastructure/repository/sale.repository.impl";
 import { SaleController } from "./sale.controller";
+import { logEndpointWithStatus } from "../../middleware/log.middleware";
 
 
 export class SaleRoutes {
@@ -10,6 +11,7 @@ export class SaleRoutes {
         const saleDataSource = new SaleDataSourceImpl();
         const saleRepository = new SaleRepositoryImpl(saleDataSource);
         const saleController = new SaleController(saleRepository);
+        router.use(logEndpointWithStatus);
         router.get("/", saleController.getSales);
         router.get("/:id", saleController.getSale);
         router.post("/", saleController.createSale);

@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "9373f675-ecc0-4848-934d-c53ce3ec0b8c",
-		"name": "ECOMMERS_NODE_APP",
+		"name": "ERP_NODE_APP",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "21987569"
 	},
@@ -419,7 +419,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"Toyota Corolla 2020\",\r\n    \"model\": \"Corolla\",\r\n    \"brand\": \"Toyota\",\r\n    \"colors\": \"Rojo, Azul, Blanco\",\r\n    \"liters\": \"2.0\",\r\n    \"km\": \"5000\",\r\n    \"engine\": \"V4\",\r\n    \"description\": \"Sedán compacto con alta eficiencia de combustible.\",\r\n    \"weight\": \"1300kg\",\r\n    \"tires\": \"Michelin\",\r\n    \"purchase_price\": 18000,\r\n    \"sale_price\": 22000,\r\n    \"user\": {\r\n        \"id_user\": \"ebf02833-9f04-44b1-9a88-f8bc741da461\"\r\n    },\r\n    \"status\": true\r\n}",
+									"raw": "{\r\n    \"name\": \"Honda Navi\",\r\n    \"model\": \"Navi\",\r\n    \"brand\": \"Honda\",\r\n    \"colors\": \"Rojo, Azul, Blanco\",\r\n    \"liters\": \"3.0\",\r\n    \"km\": \"5000\",\r\n    \"engine\": \"V2\",\r\n    \"description\": \"Moto lineal increible\",\r\n    \"weight\": \"1300kg\",\r\n    \"tires\": \"dajwd\",\r\n    \"purchase_price\": 4500,\r\n    \"sale_price\": 5300,\r\n    \"user\": {\r\n        \"id_user\": \"ebf02833-9f04-44b1-9a88-f8bc741da461\"\r\n    },\r\n    \"status\": true\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -500,7 +500,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/product/",
+							"raw": "http://localhost:3000/api/product?page=2&pageSize=10",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -508,8 +508,17 @@
 							"port": "3000",
 							"path": [
 								"api",
-								"product",
-								""
+								"product"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2"
+								},
+								{
+									"key": "pageSize",
+									"value": "10"
+								}
 							]
 						}
 					},
@@ -1121,7 +1130,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/user/b353870c-3104-4d49-a48f-23c0e24791a0",
+							"raw": "http://localhost:3000/api/user/39ba2a71-3209-4969-a731-0ea7dc490c9",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1130,7 +1139,7 @@
 							"path": [
 								"api",
 								"user",
-								"b353870c-3104-4d49-a48f-23c0e24791a0"
+								"39ba2a71-3209-4969-a731-0ea7dc490c9"
 							]
 						}
 					},
@@ -1143,7 +1152,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"admin22\",\r\n    \"surnames\": \"admi212n\",\r\n    \"dni\": \"21213\",\r\n    \"user_name\":  null,\r\n    \"password\": null,\r\n    \"email\": null,\r\n    \"img_profile\": null,\r\n    \"id_role\": null,\r\n    \"updated_at\": null\r\n}",
+							"raw": "{\r\n    \"name\": \"superusuario\",\r\n    \"surnames\": \"admi212n\",\r\n    \"dni\": \"21213\",\r\n    \"user_name\":  \"luisdeveloper23\",\r\n    \"password\": \"20020923\",\r\n    \"email\": \"luissaavedrafalcon23@gnsafl.com\",\r\n    \"img_profile\": null,\r\n    \"id_role\": null,\r\n    \"updated_at\": null\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1211,6 +1220,91 @@
 								"api",
 								"user",
 								"a560f80a-37c6-4dfc-8bcb-b149a5cf140a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"auth": {
+							"type": "oauth1",
+							"oauth1": [
+								{
+									"key": "signatureMethod",
+									"value": "HMAC-SHA1",
+									"type": "string"
+								},
+								{
+									"key": "version",
+									"value": "1.0",
+									"type": "string"
+								},
+								{
+									"key": "addParamsToHeader",
+									"value": false,
+									"type": "boolean"
+								},
+								{
+									"key": "addEmptyParamsToSign",
+									"value": false,
+									"type": "boolean"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"luisdeveloper23\",\r\n    \"password\": \"20020923\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "refresh_token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NDU4MjI1NTEsImRhdGEiOnsiaWQiOiI3MGEyMTQwOC02NGFlLTRiZjQtYWIxMC1lN2JhZTI2MTczNDEiLCJ1c2VybmFtZSI6Imx1aXNkZXZlbG9wZXIyMyIsIm5hbWUiOiJzdXBlcnVzdWFyaW8ifSwiaWF0IjoxNzQ1ODE4OTUxfQ.ePWeLNhiWI2fpXHX5ryp8hXyVCvcsfybomZan4nI2D8\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/auth/refresh",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth",
+								"refresh"
 							]
 						}
 					},

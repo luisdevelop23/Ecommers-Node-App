@@ -5,6 +5,7 @@ import { SaleController } from "../sale/sale.controller";
 import { SaleDetailDataSourceImpl } from "../../infrastructure/datasource/sale_detail.datasource.impl";
 import { SaleDetailRepositoryImpl } from "../../infrastructure/repository/sale_detail.repository.impl";
 import { SaleDetailController } from "./sale_detail.controller";
+import { logEndpointWithStatus } from "../../middleware/log.middleware";
 
 export class SaleDetailRoutes {
 
@@ -13,6 +14,7 @@ export class SaleDetailRoutes {
         const saleDetailDataSource = new SaleDetailDataSourceImpl();
         const saleDetailRepository = new SaleDetailRepositoryImpl(saleDetailDataSource);
         const saleDetailController = new SaleDetailController(saleDetailRepository);
+        router.use(logEndpointWithStatus);
         router.get("/", saleDetailController.getSaleDetails);
         router.get("/:id", saleDetailController.getSaleDetail);
         router.post("/", saleDetailController.createSaleDetail);
