@@ -3,6 +3,7 @@ import cors from "cors";
 import { AppRoutes } from "./app.routes";
 import { TypeOrmCustomize } from "../plugins/type-orm/type-orm";
 import cookieParser from "cookie-parser"
+import { errorHandler } from "../middleware/error.middleware";
 export class Server {
   private app = express();
   port: number = 3000;
@@ -49,7 +50,7 @@ export class Server {
     this.configurationRoutes();
     await this.connectDatabase();
     this.configurationErrorHandler();
-    // this.app.use(errorHandler);
+    this.app.use(errorHandler);
     this.app.listen(this.port, () => {
       console.log(`Servidor corriendo en el puerto ${this.port} `);
     });
