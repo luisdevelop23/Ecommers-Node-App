@@ -1,11 +1,14 @@
 import { NextFunction, Request, Response } from "express";
 import { UserRepository } from "../../domain/repository/user.repository";
 import { envs } from "../../plugins/env-var/env";
+import jwt from "jsonwebtoken";
+import { BadCredentialsError } from "../../helpers/message.error";
 
 export class AuthController {
   constructor(private readonly repository: UserRepository) {}
   public login = async (req: Request, res: Response, next: NextFunction) => {
     try {
+      console.log(req.body);
       const { username, password } = req.body;
       const user = await this.repository.login(username, password);
       res.cookie("access_token", user.token, {
@@ -16,15 +19,12 @@ export class AuthController {
       });
       res.status(200).json({
         message: "Usuario logueado",
-        token: user.token,
         result: true,
       });
     } catch (error) {
       next(error);
     }
   };
-
-
 
   public refresh = async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -54,6 +54,37 @@ export class AuthController {
       res.status(200).json({
         message: "Usuario deslogueado",
         data: null,
+        result: true,
+      });
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  public verify = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const token = req.cookies.access_token;
+      if (!token) {
+        res.status(401).json({
+          message: "Token no valido",
+          data: false,
+          result: false,
+        });
+      }
+      const decoded = jwt.verify(token, envs.JWT_SECRET as string) as any;
+
+
+      // Verificamos que el token esté bien formado y contenga la propiedad 'data'
+      if (!decoded || !decoded.data) {
+        throw new BadCredentialsError("Token inválido o mal formado", {
+          result: false,
+          message: "Token inválido",
+          errorCode: "TOKEN_INVALID",
+        });
+      }
+      res.status(200).json({
+        message: "Token valido",
+        data: true,
         result: true,
       });
     } catch (error) {

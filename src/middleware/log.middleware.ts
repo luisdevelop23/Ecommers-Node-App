@@ -12,8 +12,8 @@ export const logEndpointWithStatus = (
     const duration = Date.now() - start;
     const endpoint = `${req.method} ${req.originalUrl} ${duration} ms`;
     const statusCode = res.statusCode;
-
-    statusCode >= 200 && statusCode < 300
+  
+    statusCode >= 200 && statusCode < 400
       ? printLog.correct(endpoint)
       : statusCode >= 400 && statusCode < 500
       ? printLog.warning(endpoint)

@@ -29,6 +29,33 @@ export class UserDataSourceImpl implements UserDataSource {
       type: "Bearer",
     };
   }
+  async refresh(token: string): Promise<JwtResponse> {
+    try {
+      const payload = jwt.verify(token, envs.JWT_SECRET as string) as any;
+      console.log("payload", payload);
+      const user = await this.repository.findOne({
+        where: {
+          id_user: payload.data.id,
+          user_name: payload.data.username,
+          name: payload.data.name,
+        },
+      });
+      if (!user) {
+        throw new BadCredentialsError("Usuario no encontrado", {
+          result: false,
+          message: "Usuario no encontrado",
+          errorCode: "USER_NOT_FOUND",
+        });
+      }
+      return UserDataSourceImpl.getJwt(user);
+    } catch (error) {
+      throw new BadCredentialsError("Token invalido", {
+        result: false,
+        message: "Token invalido",
+        errorCode: "TOKEN_INVALID",
+      });
+    }
+  }
 
   async getUsers(): Promise<UserEntity[]> {
     return this.repository.find({
@@ -128,31 +155,5 @@ export class UserDataSourceImpl implements UserDataSource {
     return UserDataSourceImpl.getJwt(user);
   }
 
-  async refresh(token: string): Promise<JwtResponse> {
-    try {
-      const payload = jwt.verify(token, envs.JWT_SECRET as string) as any;
-      console.log("payload", payload);
-      const user = await this.repository.findOne({
-        where: {
-          id_user: payload.data.id,
-          user_name: payload.data.username,
-          name: payload.data.name,
-        },
-      });
-      if (!user) {
-        throw new BadCredentialsError("Usuario no encontrado", {
-          result: false,
-          message: "Usuario no encontrado",
-          errorCode: "USER_NOT_FOUND",
-        });
-      }
-      return UserDataSourceImpl.getJwt(user);
-    } catch (error) {
-      throw new BadCredentialsError("Token invalido", {
-        result: false,
-        message: "Token invalido",
-        errorCode: "TOKEN_INVALID",
-      });
-    }
-  }
+
 }

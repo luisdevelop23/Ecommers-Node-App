@@ -10,9 +10,10 @@ export class Server {
   
   private configurationMiddlewares() {
     const corsOptions = {
-      origin: "*",
+      origin: "http://localhost:5173",
       methods: ["GET", "POST", "PUT", "DELETE"],
       allowedHeaders: ["Content-Type", "Authorization"],
+      credentials: true
     };
     this.app.use(cors(corsOptions));
     this.app.use(express.json());
@@ -49,6 +50,8 @@ export class Server {
     this.configurationMiddlewares();
     this.configurationRoutes();
     await this.connectDatabase();
+
+    
     this.configurationErrorHandler();
     this.app.use(errorHandler);
     this.app.listen(this.port, () => {

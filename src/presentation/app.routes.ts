@@ -20,6 +20,7 @@ export class AppRoutes {
 
     // ? aplicamos el middlewere de autenticacion a las rutas protegidas
     router.use(authenticate);
+
     router.use("/api/inventory", InventoryRoutes.routes);
     router.use("/api/movement", InventoryMovementRoutes.routes);
     router.use("/api/permission", PermissionRoutes.routes);
