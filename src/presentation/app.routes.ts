@@ -19,7 +19,7 @@ export class AppRoutes {
     router.use("/api/auth", AuthRoutes.Routes);
 
     // ? aplicamos el middlewere de autenticacion a las rutas protegidas
-    router.use(authenticate);
+    // router.use(authenticate);
 
     router.use("/api/inventory", InventoryRoutes.routes);
     router.use("/api/movement", InventoryMovementRoutes.routes);
@@ -31,6 +31,8 @@ export class AppRoutes {
     router.use("/api/sale", SaleRoutes.routes);
     router.use("/api/ubigeo", UbigeoRoutes.routes);
     router.use("/api/user", UserRoutes.routes);
+    router.use(authenticate);
+
     return router;
   }
 }

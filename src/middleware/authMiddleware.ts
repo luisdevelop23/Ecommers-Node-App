@@ -10,23 +10,23 @@ export const authenticate = (
   const token = req.cookies.access_token;
 
   if (!token) {
-     res.status(401).json({
+    res.status(401).json({
       message: "No se encuentra el token, por favor inicia sesión.",
       result: false,
     });
-    return
+    return;
   }
   try {
-    
     const decoded = jwt.verify(token, envs.JWT_SECRET as string);
-  
+
     next();
-    return
+    return;
   } catch (err) {
-     res.status(401).json({
+    res.status(401).json({
       message: "Token inválido o expirado.",
       result: false,
     });
-    return
+    return;
+    next();
   }
 };

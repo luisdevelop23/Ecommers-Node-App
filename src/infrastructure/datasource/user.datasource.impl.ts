@@ -29,7 +29,9 @@ export class UserDataSourceImpl implements UserDataSource {
       type: "Bearer",
     };
   }
-  async refresh(token: string): Promise<JwtResponse> {
+  async refresh(
+    token: string
+  ): Promise<{ user: UserEntity; token: JwtResponse }> {
     try {
       const payload = jwt.verify(token, envs.JWT_SECRET as string) as any;
       console.log("payload", payload);
@@ -39,6 +41,16 @@ export class UserDataSourceImpl implements UserDataSource {
           user_name: payload.data.username,
           name: payload.data.name,
         },
+        select: [
+          "id_user",
+          "name",
+          "surnames",
+          "dni",
+          "user_name",
+          "email",
+          "status",
+          "password",
+        ],
       });
       if (!user) {
         throw new BadCredentialsError("Usuario no encontrado", {
@@ -47,7 +59,12 @@ export class UserDataSourceImpl implements UserDataSource {
           errorCode: "USER_NOT_FOUND",
         });
       }
-      return UserDataSourceImpl.getJwt(user);
+      const { password: _password, ...userWithoutPassword } = user;
+      const user2: UserEntity = userWithoutPassword;
+      return {
+        user: user2,
+        token: UserDataSourceImpl.getJwt(user),
+      };
     } catch (error) {
       throw new BadCredentialsError("Token invalido", {
         result: false,
@@ -57,19 +74,22 @@ export class UserDataSourceImpl implements UserDataSource {
     }
   }
 
-  async getUsers(): Promise<UserEntity[]> {
-    return this.repository.find({
-      select: [
-        "name",
-        "surnames",
-        "img_profile",
-        "dni",
-        "id_user",
-        "email",
-        "status",
-      ],
+  async getUsers(
+    page: number,
+    pageSize: number,
+    search: string
+  ): Promise<{ users: UserEntity[]; pages: number }> {
+    const users = await this.repository.find({
+      where: { status: true },
+      select: ["name", "surnames", "dni", "user_name", "email", "status"],
       order: { created_date: "DESC" },
+      skip: (page - 1) * pageSize,
+      take: pageSize,
     });
+
+    const count = await this.repository.count({ where: { status: true } });
+
+    return { users, pages: Math.ceil(count / pageSize) };
   }
 
   async getUser(id: string): Promise<UserEntity> {
@@ -134,9 +154,22 @@ export class UserDataSourceImpl implements UserDataSource {
     userToDelete.status = false;
     return this.repository.save(userToDelete);
   }
-  async login(usernamen: string, password: string): Promise<JwtResponse> {
+  async login(
+    usernamen: string,
+    password: string
+  ): Promise<{ user: UserEntity; token: JwtResponse }> {
     const user = await this.repository.findOne({
       where: { user_name: usernamen },
+      select: [
+        "id_user",
+        "name",
+        "surnames",
+        "dni",
+        "user_name",
+        "email",
+        "status",
+        "password",
+      ],
     });
     if (!user) {
       throw new BadCredentialsError("Usuario no encontrado", {
@@ -152,8 +185,10 @@ export class UserDataSourceImpl implements UserDataSource {
         errorCode: "PASSWORD_INCORRECT",
       });
     }
-    return UserDataSourceImpl.getJwt(user);
+
+    const { password: _password, ...userWithoutPassword } = user;
+    const user2: UserEntity = userWithoutPassword;
+    const token = UserDataSourceImpl.getJwt(user2);
+    return { user: user2, token: token };
   }
-
-
 }

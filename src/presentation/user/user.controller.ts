@@ -11,17 +11,22 @@ export class UserController {
     next: NextFunction
   ): Promise<void> => {
     try {
-      const users = await this.repository.getUsers();
+      const page = parseInt(req.query.page as string) || 1;
+      const pageSize = parseInt(req.query.pageSize as string) || 10; 
+
+      const { users, pages} = await this.repository.getUsers(page, pageSize, req.query.search as string);
       if (users.length === 0) {
-        res.status(200).json({
+        res.status(204).json({
           message: "No se encontraron Usuarios",
           data: null,
           result: false,
         });
+        return
       }
       res.status(200).json({
         message: "Usuarios obtenidos",
         data: users, 
+        pages,
         result: true,
       });
     } catch (error) {

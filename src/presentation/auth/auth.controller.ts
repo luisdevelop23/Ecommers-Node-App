@@ -10,8 +10,10 @@ export class AuthController {
     try {
       console.log(req.body);
       const { username, password } = req.body;
-      const user = await this.repository.login(username, password);
-      res.cookie("access_token", user.token, {
+      const {user, token} = await this.repository.login(username, password);
+      console.log("user login", user);
+      console.log("user token", token);
+      res.cookie("access_token",token.token, {
         httpOnly: true, //?la cookie solo se puede acceder desde el servidor
         sameSite: "strict", //?la cookie solo se puede acceder desde el mismo dominio
         secure: envs.NODE_ENV === "production", //?la coockie solo se puede enviar en https
@@ -19,8 +21,10 @@ export class AuthController {
       });
       res.status(200).json({
         message: "Usuario logueado",
+        data: user,
         result: true,
       });
+
     } catch (error) {
       next(error);
     }
@@ -29,7 +33,7 @@ export class AuthController {
   public refresh = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { token } = req.body;
-      const newToken = await this.repository.refresh(token as string);
+      const { user, token: newToken } = await this.repository.refresh(token as string);
       res.cookie("access_token", newToken, {
         httpOnly: true, //?la cookie solo se puede acceder desde el servidor
         sameSite: "strict", //?la cookie solo se puede acceder desde el mismo dominio
@@ -38,6 +42,7 @@ export class AuthController {
       });
       res.status(200).json({
         message: "Token actualizado",
+        data: user,
         result: true,
       });
     } catch (error) {
@@ -64,6 +69,7 @@ export class AuthController {
   public verify = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const token = req.cookies.access_token;
+        console.log("tokensss", token);
       if (!token) {
         res.status(401).json({
           message: "Token no valido",
@@ -72,8 +78,7 @@ export class AuthController {
         });
       }
       const decoded = jwt.verify(token, envs.JWT_SECRET as string) as any;
-
-
+      console.log("decoded", decoded);
       // Verificamos que el token esté bien formado y contenga la propiedad 'data'
       if (!decoded || !decoded.data) {
         throw new BadCredentialsError("Token inválido o mal formado", {

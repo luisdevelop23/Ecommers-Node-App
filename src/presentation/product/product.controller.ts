@@ -39,11 +39,12 @@ export class ProductController {
 
       const { products, pages }= await this.repository.getProducts(page, pageSize);
       if (products.length === 0) {
-        res.status(200).json({
+        res.status(204).json({
           message: "No se encontraron productos",
           data: null,
           result: false,
         });
+        return
       }
       res.status(200).json({
         message: "Productos obtenidos",

@@ -7,8 +7,8 @@ import { UserRepository } from "../../domain/repository/user.repository";
 export class UserRepositoryImpl implements UserRepository {
   constructor(private readonly datasource: UserDataSource) {}
 
-  async getUsers(): Promise<UserEntity[]> {
-    return await this.datasource.getUsers();
+  async getUsers(page: number, pageSize: number, search: string): Promise<{users: UserEntity[], pages: number}> {
+    return await this.datasource.getUsers(page, pageSize, search);
   }
   async getUser(id: string): Promise<UserEntity> {
     return await this.datasource.getUser(id);
@@ -22,10 +22,10 @@ export class UserRepositoryImpl implements UserRepository {
   async deleteUser(id: string): Promise<UserEntity> {
     return await this.datasource.deleteUser(id);
   }
-  async login(usernamen: string, password: string): Promise<JwtResponse> {
+  async login(usernamen: string, password: string): Promise<{user:UserEntity,token:JwtResponse}> {
     return await this.datasource.login(usernamen, password);
   }
-  async refresh(token: string): Promise<JwtResponse> {
+  async refresh(token: string): Promise<{user:UserEntity,token:JwtResponse}> {
     return await this.datasource.refresh(token);
   }
 }
